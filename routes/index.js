@@ -5,9 +5,12 @@ const router = Router();
 const facturasController = require('../controllers/cuenta/facturaControler');
 //personas
 const personasController = require('../controllers/personas/personaController')
-const puestoController = require('../controllers/personas/puestoController')
 //admin
-const adminController = require('../controllers/adminController')
+const adminController = require('../controllers/adminController');
+const comidaController = require('../controllers/comida/comidaController');
+const ingreController = require('../controllers/ingredientes/ingreController');
+//'../controllers/comida/comidaController' - en este caso comida es el nombre de la carpeta de los controladores o el cotrolador a usar
+
 //RUTAS
 
 module.exports = (app) => {
@@ -15,16 +18,23 @@ module.exports = (app) => {
     router.get('/factura/find', facturasController.find);
     router.get('/factura/find/id', facturasController.findById);
     router.get('/factura/find/discount', facturasController.findByDiscount);
-    router.post('/factura/create', facturasController.create);
-    router.put('/factura/update', facturasController.update);
-    router.delete('/factura/delete/:id', facturasController.delete);
     
     //personas
     router.get('/persona/find', personasController.find);
+    
+    router.get('/comida/find', comidaController.find);
+    router.get('/comida/find/id', comidaController.findById);
+ //'/comida/find/id' - comida es un nombre cualquiera en este caso no importa el nomnbre que se coloque
 
-    //puestos
-    router.get('/puesto/find', puestoController.findPuestos)
+    router.get('/ingredientes/find', ingreController.findIngredi);
+
+    //create productos
+    router.post('/comida/create', comidaController.create);
+    //update productos
+    router.put('/comida/update', comidaController.update);
+    //delete productos
+    router.delete('/comida/delete/:id', comidaController.delete)
     
     app.use('/', router);
-//hola :D
+
 };
