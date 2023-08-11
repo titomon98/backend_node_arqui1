@@ -5,9 +5,10 @@ const router = Router();
 const facturasController = require('../controllers/cuenta/facturaControler');
 //personas
 const personasController = require('../controllers/personas/personaController')
-const puestoController = require('../controllers/personas/puestoController')
 //admin
-const adminController = require('../controllers/adminController')
+const adminController = require('../controllers/adminController');
+const controladorproductos = require('../controllers/productos/controladorproductos');
+const tiendacontroller = require('../controllers/tienda/tiendacontroller');
 //RUTAS
 
 module.exports = (app) => {
@@ -15,18 +16,24 @@ module.exports = (app) => {
     router.get('/factura/find', facturasController.find);
     router.get('/factura/find/id', facturasController.findById);
     router.get('/factura/find/discount', facturasController.findByDiscount);
-    router.post('/factura/create', facturasController.create);
-    router.put('/factura/update', facturasController.update);
-    router.delete('/factura/delete/:id', facturasController.delete);
     
     //personas
     router.get('/persona/find', personasController.find);
 
-    //puestos
-    router.get('/puesto/find', puestoController.findPuestos)
+    //productos
+    router.get('/productos/find', controladorproductos.find);
+    router.get('/productos/find/id', controladorproductos.findById);
+
+    //tienda
+    router.get('/tienda/find', tiendacontroller.findTienda);
     
     app.use('/', router);
 
-    //hola
+    //create productos
+    router.post('/productos/create', controladorproductos.create);
+    //update productos
+    router.put('/productos/update', controladorproductos.update);
+    //delete productos
+    router.delete('/productos/delete/:id', controladorproductos.delete);
 
 };
