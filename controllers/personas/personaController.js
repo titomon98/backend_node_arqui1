@@ -4,7 +4,6 @@ const db = require("../../models");
 const Persona = db.personas;
 const moment = require('moment');
 const axios = require('axios')
-const { Op } = require("sequelize");
 
 module.exports = {
     find (req, res) {
