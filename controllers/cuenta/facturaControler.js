@@ -79,7 +79,7 @@ module.exports = {
             return res.status(500).json({ error: 'Error al actualizar' });
         });
     },
-
+//buenas
     async delete (req, res) {
       //Eliminar
       console.log(req.params.id)
