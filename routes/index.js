@@ -5,9 +5,9 @@ const router = Router();
 const facturasController = require('../controllers/cuenta/facturaControler');
 //personas
 const personasController = require('../controllers/personas/personaController')
-const puestoController = require('../controllers/personas/puestoController')
 //admin
-const adminController = require('../controllers/adminController')
+const adminController = require('../controllers/adminController');
+const carroscontroller = require('../controllers/carros/carroscontroller');
 //RUTAS
 
 module.exports = (app) => {
@@ -15,15 +15,18 @@ module.exports = (app) => {
     router.get('/factura/find', facturasController.find);
     router.get('/factura/find/id', facturasController.findById);
     router.get('/factura/find/discount', facturasController.findByDiscount);
-    router.post('/factura/create', facturasController.create);
-    router.put('/factura/update', facturasController.update);
-    router.delete('/factura/delete/:id', facturasController.delete);
     
     //personas
     router.get('/persona/find', personasController.find);
+    router.get('/carros/find', carroscontroller.find);
+    router.get('/carros/find/id', carroscontroller.findById);
 
-    //puestos
-    router.get('/puesto/find', puestoController.findPuestos)
+    //create
+    router.post('/carros/create', carroscontroller.create);
+    //update
+    router.put('/carros/update', carroscontroller.update);
+    //delete
+    router.delete('/carros/delete/:id', carroscontroller.delete);
     
     app.use('/', router);
 

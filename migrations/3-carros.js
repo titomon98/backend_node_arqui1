@@ -1,44 +1,49 @@
 'use strict';
+
+const sequelize = require("sequelize");
+
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('personas', {
+    await queryInterface.createTable('carros', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
-      }, //esto tampoco cambia
-      nombre: {
+      },
+      marca: {
         type: Sequelize.STRING,
         allowNull: false
       },
-      nacimiento:{
-        type: Sequelize.DATE,
-        allowNull: false
-      },
-      informacion: {
+      modelo: {
         type: Sequelize.STRING,
         allowNull: false
       },
-      telefono: {
-        type: Sequelize.STRING,
-    },
+      anio: {
+        type: Sequelize.INTEGER,
+        allowNull: false
+      },
       estado: {
         type: Sequelize.INTEGER,
         allowNull: false
       },
+      id_persona: {
+        type: Sequelize.INTEGER,
+        allowNull: false
+      },
+      
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
-      }, //este no se cambia
+      },
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE
-      }, //estos no se cambian
+      },
     });
     
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('personas');
+    await queryInterface.dropTable('carros');
   }
 };
