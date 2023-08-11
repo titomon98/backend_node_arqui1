@@ -5,7 +5,7 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class personas extends Model {
     static associate(models) {
-      personas.hasMany(models.puestos, {
+      personas.hasMany(models.carros, {
         foreignKey: 'id_persona'
       })
     }
@@ -19,12 +19,12 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.DATE, //Tipo de dato de fecha y hora
         allowNull: false //no permite datos nulos
     },
-    ahorros: {
-        type: DataTypes.DECIMAL(10, 2)
-        //si no se especifica que allowNull sea falso, si permite datos nulos
-    },
     telefono: {
         type: DataTypes.STRING,
+    },
+    licencia: {
+      type: DataTypes.STRING,
+      allowNull: false
     },
     estado: {
       type: DataTypes.INTEGER,

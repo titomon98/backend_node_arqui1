@@ -16,12 +16,13 @@ module.exports = {
         type: Sequelize.DATE,
         allowNull: false
       },
-      ahorros: {
-        type: Sequelize.DECIMAL(10,2)
-      },
       telefono: {
         type: Sequelize.STRING,
-    },
+      },
+      licencia: {
+        type: Sequelize.STRING,
+        allowNull: false
+      },
       estado: {
         type: Sequelize.INTEGER,
         allowNull: false
