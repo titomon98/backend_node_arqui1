@@ -1,5 +1,5 @@
 {
-  "name": "hospital",
+  "name": "puntodeventa",
   "version": "1.0.0",
   "description": "Backend",
   "main": "app.js",
@@ -20,11 +20,20 @@
     "moment": "^2.29.4",
     "morgan": "^1.10.0",
     "mysql2": "^2.3.2",
+    "router": "^1.3.8",
     "sequelize": "^6.19.0",
     "xml": "^1.0.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.14",
     "sequelize-cli": "^6.3.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/titomon98/backend_node_arqui1.git"
+  },
+  "bugs": {
+    "url": "https://github.com/titomon98/backend_node_arqui1/issues"
+  },
+  "homepage": "https://github.com/titomon98/backend_node_arqui1#readme"
 }
