@@ -1,8 +1,8 @@
 {
   "development": {
     "username": "root",
-    "password": null,
-    "database": "prueba",
+    "password": "Shadowdemon456.",
+    "database": "libreria",
     "host": "127.0.0.1",
     "dialect": "mysql",
     "operatorAliases": false,
@@ -11,8 +11,8 @@
   },
   "test": {
     "username": "root",
-    "password": null,
-    "database": "prueba",
+    "password": "Shadowdemon456.",
+    "database": "libreria",
     "host": "127.0.0.1",
     "timezone": "-06:00",
 
@@ -20,8 +20,8 @@
   },
   "production": {
     "username": "root",
-    "password": null,
-    "database": "prueba",
+    "password": "Shadowdemon456.",
+    "database": "libreria",
     "host": "127.0.0.1",
     "timezone": "-06:00",
 

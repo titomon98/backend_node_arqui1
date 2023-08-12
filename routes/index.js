@@ -1,30 +1,20 @@
 const { Router } = require('express');
 const router = Router();
-
 // facturas
 const facturasController = require('../controllers/cuenta/facturaControler');
-//personas
-const personasController = require('../controllers/personas/personaController')
-const puestoController = require('../controllers/personas/puestoController')
-//admin
-const adminController = require('../controllers/adminController')
+const librosController = require('../controllers/cuenta/librosController');
+const autoresController = require('../controllers/cuenta/autoresController');
 //RUTAS
-
 module.exports = (app) => {
     //facturas
     router.get('/factura/find', facturasController.find);
     router.get('/factura/find/id', facturasController.findById);
     router.get('/factura/find/discount', facturasController.findByDiscount);
-    router.post('/factura/create', facturasController.create);
-    router.put('/factura/update', facturasController.update);
-    router.delete('/factura/delete/:id', facturasController.delete);
-    
-    //personas
-    router.get('/persona/find', personasController.find);
-
-    //puestos
-    router.get('/puesto/find', puestoController.findPuestos)
-    
+    router.get('/libro/find', librosController.find);
+    router.post('/autores/create', autoresController.create);
+    router.put('/autores/update', autoresController.update);
+    router.put('/autores/updateName', autoresController.updateName);
+    router.get('/autores/find', autoresController.find);
+    router.delete('/autores/delete/:id', autoresController.delete);
     app.use('/', router);
-
 };

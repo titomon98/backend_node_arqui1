@@ -8,7 +8,6 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      //probando
       pertenece_a: {
         type: Sequelize.STRING,
         allowNull: false
