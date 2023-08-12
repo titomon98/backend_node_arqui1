@@ -7,7 +7,9 @@ const facturasController = require('../controllers/cuenta/facturaControler');
 const personasController = require('../controllers/personas/personaController')
 const puestoController = require('../controllers/personas/puestoController')
 //admin
-const adminController = require('../controllers/adminController')
+const adminController = require('../controllers/adminController');
+const ligaControler = require('../controllers/ligas/ligaControler');
+const equiposController = require('../controllers/equipos/equiposController');
 //RUTAS
 
 module.exports = (app) => {
@@ -15,16 +17,28 @@ module.exports = (app) => {
     router.get('/factura/find', facturasController.find);
     router.get('/factura/find/id', facturasController.findById);
     router.get('/factura/find/discount', facturasController.findByDiscount);
-    router.post('/factura/create', facturasController.create);
-    router.put('/factura/update', facturasController.update);
-    router.delete('/factura/delete/:id', facturasController.delete);
     
     //personas
     router.get('/persona/find', personasController.find);
 
     //puestos
     router.get('/puesto/find', puestoController.findPuestos)
-    
+
+    router.get('/liga/find', ligaControler.find)
+    router.get('/liga/find/id', ligaControler.findById);
+    router.post('/liga/create', ligaControler.create);
+    router.put('/liga/update', ligaControler.update);
+    router.delete('/liga/delete/:id', ligaControler.delete);
+
+    router.get('/equipo/find', equiposController.find)
+    router.get('/equipo/find/id', equiposController.findById);
+    router.post('/equipo/create', equiposController.create);
+    router.put('/equipo/update', equiposController.update);
+    router.delete('/equipo/delete/:id', equiposController.delete);
+
+
     app.use('/', router);
+
+    
 
 };
