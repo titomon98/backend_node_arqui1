@@ -29,7 +29,7 @@ module.exports = {
                 allowNull: false
             },
             precio: {
-                type: Svvvvvvvvvvvvvvvvvvvvvvvvvvvequelize.FLOAT,
+                type: Sequelize.FLOAT,
                 allowNull: false
             },
             subtotal: {
