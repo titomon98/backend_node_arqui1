@@ -9,18 +9,18 @@ module.exports = {
                 type: Sequelize.INTEGER
             },
             fecha_venta: {
-                tupe: Sequelize.DATE,
+                type: Sequelize.DATE,
                 allowNull: false
             },
             total: {
-                tupe: Sequelize.INTEGER,
+                type: Sequelize.INTEGER,
                 allowNull: false
             },
-            id_clientess:{
+            id_clientes:{
                 allowNull: false,
                 type: Sequelize.INTEGER,
                 references:{
-                  model: 'ventas',
+                  model: 'clientes',
                   key: 'id'
                 }
               },
