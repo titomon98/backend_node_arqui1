@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     };
     tipo_clientes.init({
         nombre: {
-            type: DataTypes.DATE,
+            type: DataTypes.STRING,
             allowNull: false
         },
         descuento: {

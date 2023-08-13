@@ -20,7 +20,7 @@ module.exports = {
                 type: Sequelize.STRING,
                 allowNull: false
             },
-            id_tipos_clientes:{
+            id_tipo_clientes:{
                 allowNull: false,
                 type: Sequelize.INTEGER,
                 references:{
