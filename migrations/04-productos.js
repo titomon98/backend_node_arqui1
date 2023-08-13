@@ -17,11 +17,11 @@ module.exports = {
                 allowNull: false
             },
             precio: {
-                type: Sequelize.STRING,
+                type: Sequelize.FLOAT,
                 allowNull: false
             },
             cantidad: {
-                type: Sequelize.STRING,
+                type: Sequelize.INTEGER,
             },
             createdAt: {
                 allowNull: false,

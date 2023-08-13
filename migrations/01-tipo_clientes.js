@@ -13,7 +13,7 @@ module.exports = {
                 allowNull: false
             },
             descuento: {
-                type: Sequelize.INTEGER,
+                type: Sequelize.FLOAT,
                 allowNull: false
             },
             createdAt: {

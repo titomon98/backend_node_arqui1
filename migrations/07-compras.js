@@ -13,7 +13,7 @@ module.exports = {
                 allowNull: false
             },
             total: {
-                type: Sequelize.INTEGER,
+                type: Sequelize.FLOAT,
                 allowNull: false
             },
             id_proveedores:{

@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false
         },
         total: {
-            type: DataTypes.STRING,
+            type: DataTypes.FLOAT,
             allowNull: false
         },
         id_clientes: {

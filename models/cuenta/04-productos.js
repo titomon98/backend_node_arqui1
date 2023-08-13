@@ -23,11 +23,11 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     },
     precio: {
-      type: DataTypes.STRING,
+      type: DataTypes.FLOAT,
       allowNull: false
     },
     cantidad: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
     }
   }, {
     sequelize,

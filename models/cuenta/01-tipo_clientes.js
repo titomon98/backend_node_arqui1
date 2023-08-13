@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false
         },
         descuento: {
-            type: DataTypes.STRING,
+            type: DataTypes.FLOAT,
             allowNull: false
         }
     }, {

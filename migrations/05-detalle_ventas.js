@@ -25,15 +25,15 @@ module.exports = {
                 }
             },
             cantidad: {
-                type: Sequelize.STRING,
+                type: Sequelize.INTEGER,
                 allowNull: false
             },
             precio: {
-                type: Sequelize.STRING,
+                type: Svvvvvvvvvvvvvvvvvvvvvvvvvvvequelize.FLOAT,
                 allowNull: false
             },
             subtotal: {
-                type: Sequelize.STRING,
+                type: Sequelize.FLOAT,
                 allowNull: false
             },
             createdAt: {
