@@ -3,15 +3,15 @@ const {
     Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-    class ventas extends Model {
+    class compras extends Model {
         static associate(models) {
-            ventas.belongsTo(models.clientes, {
-                foreignKey: 'id_clientes'
+            compras.belongsTo(models.proveedores, {
+                foreignKey: 'id_compras'
             })
         }
     };
-    ventas.init({
-        fecha_venta: {
+    compras.init({
+        fecha_compra: {
             type: DataTypes.DATE,
             allowNull: false
         },
@@ -19,13 +19,13 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: false
         },
-        id_clientes: {
+        id_proveedores: {
             type: DataTypes.INTEGER,
             allowNull: false
         }
     }, {
         sequelize,
-        modelName: 'ventas',
+        modelName: 'compras',
     });
-    return ventas;
+    return compras;
 };

@@ -32,28 +32,26 @@ module.exports = {
     //     .catch(error => res.status(400).send(error))
     // }, //Consulta para los que tengan un descuento mayor a 0
 
-    // create (req, res) {
-    //   //Crear
-    //   //extraer datos de req.body
-    //   let datos = req.body //Serializar los datos
-    //   const datos_ingreso = { //Objeto
-    //       pertenece_a: datos.nombre,
-    //       nit: datos.nit,
-    //       total: datos.total,
-    //       direccion: datos.direccion,
-    //       descuento: datos.descuento,
-    //       estado: 0
-    //   };
+    create (req, res) {
+      //Crear
+      //extraer datos de req.body
+      let datos = req.body //Serializar los datos
+      const datos_ingreso = { //Objeto
+          nombre: datos.nombre,
+          descripcion: datos.descripcion,
+          precio: datos.precio,
+          cantidad: datos.cantidad,
+      };
 
-    //   Factura.create(datos_ingreso)
-    //   .then(factura => {
-    //       res.send(factura);
-    //   })
-    //   .catch(error => {
-    //       console.log(error)
-    //       return res.status(500).json({ error: 'Error al insertar' });
-    //   });
-    // },
+      Productos.create(datos_ingreso)
+      .then(productos => {
+          res.send(productos);
+      })
+      .catch(error => {
+          console.log(error)
+          return res.status(500).json({ error: 'Error al insertar' });
+      });
+    },
 
     // update (req, res) {
     //   //Actualizar

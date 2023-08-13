@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
         }
     };
     tipo_clientes.init({
-          nombre: {
+        nombre: {
             type: DataTypes.DATE,
             allowNull: false
         },

@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
     up: async (queryInterface, Sequelize) => {
-        await queryInterface.createTable('productos', {
+        await queryInterface.createTable('proveedores', {
             id: {
                 allowNull: false,
                 autoIncrement: true,
@@ -12,16 +12,21 @@ module.exports = {
                 type: Sequelize.STRING,
                 allowNull: false
             },
-            descripcion: {
+            contacto: {
                 type: Sequelize.STRING,
                 allowNull: false
             },
-            precio: {
+            direccion: {
                 type: Sequelize.STRING,
                 allowNull: false
             },
-            cantidad: {
+            telefono: {
                 type: Sequelize.STRING,
+                allowNull: false
+            },
+            correo: {
+                type: Sequelize.STRING,
+                allowNull: false
             },
             createdAt: {
                 allowNull: false,
@@ -30,10 +35,10 @@ module.exports = {
             updatedAt: {
                 allowNull: false,
                 type: Sequelize.DATE
-            },
+            }
         });
     },
     down: async (queryInterface, Sequelize) => {
-        await queryInterface.dropTable('productos');
+        await queryInterface.dropTable('proveedores');
     }
-};
+}
