@@ -8,9 +8,9 @@ module.exports = (sequelize, DataTypes) => {
             ventas.belongsTo(models.clientes, {
                 foreignKey: 'id_clientes'
             }),
-            ventas.hasMany(models.detalle_ventas, {
-                foreignKey: 'id_detalle_ventas'
-            })
+                ventas.hasMany(models.detalle_ventas, {
+                    foreignKey: 'id_ventas'
+                })
         }
     };
     ventas.init({

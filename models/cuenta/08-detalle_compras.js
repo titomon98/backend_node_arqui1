@@ -14,14 +14,7 @@ module.exports = (sequelize, DataTypes) => {
         }
     };
     detalle_compras.init({
-        id_compras: {
-            type: DataTypes.INTEGER,
-            allowNull: false
-        },
-        id_productos: {
-            type: DataTypes.INTEGER,
-            allowNull: false
-        },
+
         cantidad: {
             type: DataTypes.INTEGER,
             allowNull: false
@@ -32,6 +25,14 @@ module.exports = (sequelize, DataTypes) => {
         },
         subtotal: {
             type: DataTypes.FLOAT,
+            allowNull: false
+        },
+        id_compras: {
+            type: DataTypes.INTEGER,
+            allowNull: false
+        },
+        id_productos: {
+            type: DataTypes.INTEGER,
             allowNull: false
         }
     }, {

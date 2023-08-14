@@ -1,27 +1,20 @@
 'use strict';
 const {
-  Model
+    Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
     class detalle_ventas extends Model {
         static associate(models) {
             detalle_ventas.belongsTo(models.ventas, {
-                foreignKey: 'id_detalle_ventas'
-            }),
+                foreignKey: 'id_ventas'
+             }),
             detalle_ventas.belongsTo(models.productos, {
-                foreignKey: 'id_detalle_ventas'
+                foreignKey: 'id_productos'
             })
         }
     };
     detalle_ventas.init({
-        id_ventas: {
-            type: DataTypes.INTEGER,
-            allowNull: false
-        },
-        id_productos: {
-            type: DataTypes.INTEGER,
-            allowNull: false
-        },
+        
         cantidad: {
             type: DataTypes.INTEGER,
             allowNull: false
@@ -32,6 +25,14 @@ module.exports = (sequelize, DataTypes) => {
         },
         subtotal: {
             type: DataTypes.FLOAT,
+            allowNull: false
+        },
+        id_ventas: {
+            type: DataTypes.INTEGER,
+            allowNull: false
+        },
+        id_productos: {
+            type: DataTypes.INTEGER,
             allowNull: false
         }
     }, {

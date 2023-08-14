@@ -15,22 +15,22 @@ module.exports = {
             total: {
                 type: Sequelize.FLOAT,
                 allowNull: false
+            }, 
+            createdAt:{
+                allowNull: false,
+                type: Sequelize.DATE
             },
-            id_proveedores:{
+            updatedAt:{
+                allowNull: false,
+                type: Sequelize.DATE
+            },
+            id_proveedores: {
                 allowNull: false,
                 type: Sequelize.INTEGER,
-                references:{
-                  model: 'proveedores',
-                  key: 'id'
+                references: {
+                    model: 'proveedores',
+                    key: 'id'
                 }
-              },
-            createdAt: {
-                allowNull: false,
-                type: Sequelize.DATE
-            },
-            updatedAt: {
-                allowNull: false,
-                type: Sequelize.DATE
             }
         });
     },

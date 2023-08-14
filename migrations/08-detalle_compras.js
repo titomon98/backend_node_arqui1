@@ -8,22 +8,6 @@ module.exports = {
                 primaryKey: true,
                 type: Sequelize.INTEGER
             },
-            id_compras: {
-                allowNull: false,
-                type: Sequelize.INTEGER,
-                references: {
-                    model: 'compras',
-                    key: 'id'
-                }
-            },
-            id_productos: {
-                allowNull: false,
-                type: Sequelize.INTEGER,
-                references: {
-                    model: 'productos',
-                    key: 'id'
-                }
-            },
             cantidad: {
                 type: Sequelize.INTEGER,
                 allowNull: false
@@ -36,6 +20,14 @@ module.exports = {
                 type: Sequelize.FLOAT,
                 allowNull: false
             },
+            id_compras: {
+                allowNull: false,
+                type: Sequelize.INTEGER,
+                references: {
+                    model: 'compras',
+                    key: 'id'
+                }
+            },
             createdAt: {
                 allowNull: false,
                 type: Sequelize.DATE
@@ -44,6 +36,14 @@ module.exports = {
                 allowNull: false,
                 type: Sequelize.DATE
             },
+            id_productos: {
+                allowNull: false,
+                type: Sequelize.INTEGER,
+                references: {
+                    model: 'productos',
+                    key: 'id'
+                }
+            }
         });
     },
     down: async (queryInterface, Sequelize) => {

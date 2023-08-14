@@ -8,22 +8,7 @@ module.exports = {
                 primaryKey: true,
                 type: Sequelize.INTEGER
             },
-            id_ventas: {
-                allowNull: false,
-                type: Sequelize.INTEGER,
-                references: {
-                    model: 'ventas',
-                    key: 'id'
-                }
-            },
-            id_productos: {
-                allowNull: false,
-                type: Sequelize.INTEGER,
-                references: {
-                    model: 'productos',
-                    key: 'id'
-                }
-            },
+            
             cantidad: {
                 type: Sequelize.INTEGER,
                 allowNull: false
@@ -44,6 +29,22 @@ module.exports = {
                 allowNull: false,
                 type: Sequelize.DATE
             },
+            id_ventas: {
+                allowNull: false,
+                type: Sequelize.INTEGER,
+                references: {
+                    model: 'ventas',
+                    key: 'id'
+                }
+            },
+            id_productos: {
+                allowNull: false,
+                type: Sequelize.INTEGER,
+                references: {
+                    model: 'productos',
+                    key: 'id'
+                }
+            }
         });
     },
     down: async (queryInterface, Sequelize) => {
