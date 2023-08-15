@@ -25,6 +25,11 @@ module.exports = {
 
     createVenta(req, res) {
         const datos = req.body;
+        //para realizar esta función tube que comprender o algo asi, el como hacer una peticion anidada
+        //primero tuve que llamar productos, para conecer el precio, luego tuve que anidad clientes para 
+        //poder conocer el desceunto según el tipo.
+
+        //Obtener el prducto
         Productos.findByPk(datos.id_productos)
             .then(producto => {
                 if (!producto) {
@@ -33,8 +38,7 @@ module.exports = {
                 const precio = producto.precio;
                 const subtotal = precio * datos.cantidad;
                 const iva = subtotal * 0.12;
-
-                // Obtener el tipo de cliente
+                // Obtener el cliente, pára obtener el tipo de cliente
                 Clientes.findByPk(datos.id_clientes, {
                     include: Tipo_clientes
                 })
@@ -46,13 +50,16 @@ module.exports = {
                         const descuento = cliente.tipo_cliente.descuento; // Supongamos que el descuento es un valor entre 0 y 1
                         // Calcular el total con descuento
                         const totalConDescuento = (subtotal + iva) * (1 - descuento);
+                        //generar constructor con los datos que iran en la venta
                         const datos_ventas = {
                             fecha_venta: new Date(),
                             total: totalConDescuento,
                             id_clientes: datos.id_clientes
                         };
+                        //se genra la venta
                         Ventas.create(datos_ventas)
                             .then(venta => {
+                                //se crea el contructor para los detalles de la venta
                                 const datos_detalle = {
                                     id_ventas: venta.id,
                                     id_productos: datos.id_productos,
@@ -60,6 +67,7 @@ module.exports = {
                                     precio: precio,
                                     subtotal: subtotal
                                 };
+                                //se crea los detalles de la venta
                                 Detalle_ventas.create(datos_detalle)
                                     .then(detalle => {
                                         res.status(201).json({
@@ -87,9 +95,6 @@ module.exports = {
                 return res.status(500).json({ error: 'Error al consultar el producto' });
             });
     },
-
-
-
     update(req, res) {
         //Actualizar
         let datos = req.body
