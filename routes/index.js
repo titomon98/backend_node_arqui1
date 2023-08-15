@@ -12,6 +12,14 @@ const ligaControler = require('../controllers/ligas/ligaControler');
 const equiposController = require('../controllers/equipos/equiposController');
 //RUTAS
 
+//PROYECTO
+const clientecontroller = require('../controllers/proyecto/Clientecontroller');
+const detallecontroller = require('../controllers/proyecto/detallecontroller');
+const inventariocontroller = require('../controllers/proyecto/inventariocontroller');
+const tipocontroller = require('../controllers/proyecto/tipocontroller');
+const ventacontroller = require('../controllers/proyecto/ventacontroller');
+
+
 module.exports = (app) => {
     //facturas
     router.get('/factura/find', facturasController.find);
@@ -36,6 +44,38 @@ module.exports = (app) => {
     router.put('/equipo/update', equiposController.update);
     router.delete('/equipo/delete/:id', equiposController.delete);
 
+
+    //parte del proyecto
+
+    //cliente
+    router.get('/cliente/find', clientecontroller.find);
+    router.post('/cliente/create', clientecontroller.create);
+    router.put('/cliente/update', clientecontroller.update);
+    router.delete('/cliente/delete/:id', clientecontroller.delete);
+
+    //detalle
+    router.get('/detalle/find', detallecontroller.find);
+    router.post('/detalle/create', detallecontroller.create);
+    router.put('/detalle/update', detallecontroller.update);
+    router.delete('/detalle/delete/:id', detallecontroller.delete);
+
+    //inventario
+    router.get('/inventario/find', inventariocontroller.find);
+    router.post('/inventario/create', inventariocontroller.create);
+    router.put('/inventario/update', inventariocontroller.update);
+    router.delete('/inventario/delete/:id', inventariocontroller.delete);
+
+    //tipo
+    router.get('/tipo/find', tipocontroller.find);
+    router.post('/tipo/create', tipocontroller.create);
+    router.put('/tipo/update', tipocontroller.update);
+    router.delete('/tipo/delete/:id', tipocontroller.delete);
+
+    //venta
+    router.get('/venta/find', ventacontroller.find);
+    router.post('/venta/create', ventacontroller.create);
+    router.put('/venta/update', ventacontroller.update);
+    router.delete('/venta/delete/:id', ventacontroller.delete);
 
     app.use('/', router);
 
