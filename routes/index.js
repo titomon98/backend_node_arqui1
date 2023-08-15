@@ -25,10 +25,12 @@ module.exports = (app) => {
     //ventas
     router.post('/ventas/create', ventasController.create);
     router.get('/ventas/find', ventasController.find);
+    router.post('/ventas/createVenta',ventasController.createVenta);
 
     //detalle de ventas
     router.post('/detalle_ventas/create', detalle_ventasController.create);
     router.get('/detalle_ventas/find', detalle_ventasController.find);
+  
     // router.put('/autores/update', autoresController.update);
     // router.put('/autores/updateName', autoresController.updateName);
     // router.get('/autores/find', autoresController.find);

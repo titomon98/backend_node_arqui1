@@ -42,19 +42,22 @@ module.exports = {
                 }
                 //calcular el precio y subtotal
                 const precio = productos.precio;
-                const subtotal = (precio * datos.cantidad) - (precio * datos.cantidad * 0.12)
+                const subtotal = (precio * datos.cantidad) + (precio * datos.cantidad * 0.12)
+                //creo el objeto
                 const datos_ingreso = { //Objeto
                     id_ventas: datos.id_ventas,
                     id_productos: datos.id_productos,
                     cantidad: datos.cantidad,
                     precio: precio,
                     subtotal: subtotal
-
                 };
+                //paso el objeto a la tabla
                 Detalle_ventas.create(datos_ingreso)
+                //si existe muestro el objeto
                     .then(detalle_ventas => {
                         res.send(detalle_ventas);
                     })
+                //en caso de error muestra el mensaje
                     .catch(error => {
                         console.log(error)
                         return res.status(500).json({ error: 'Error al insertar' });
