@@ -13,11 +13,17 @@ const { Op } = require("sequelize");
 module.exports = {
     find(req, res) {
         return Ventas.findAll({
-            attributes: ['fecha_venta', 'total'],
-            include: {
-                model: Clientes,
-                attributes: ['nombres', 'apellidos', 'nit']
-            }
+            attributes: ['id','fecha_venta', 'total'],
+            include: [
+                {
+                    model: Clientes,
+                    attributes: ['nombres', 'apellidos', 'nit']
+                },
+                {
+                    model: Detalle_ventas,
+                    attributes: ['cantidad', 'precio', 'subtotal']
+                }
+            ]
         })
             .then(cuenta => res.status(200).send(cuenta))
             .catch(error => res.status(400).send(error))

@@ -23,7 +23,7 @@ module.exports = (app) => {
     router.post('/clientes/create', clientesController.create);
     router.get('/clientes/find', clientesController.find);
     //ventas
-    router.post('/ventas/create', ventasController.create);
+    
     router.get('/ventas/find', ventasController.find);
     router.post('/ventas/createVenta',ventasController.createVenta);
 
