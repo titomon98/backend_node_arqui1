@@ -5,6 +5,8 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class inventario extends Model {
     static associate(models) {
+      // define association here
+      //un inventario puede tener muchos detalles
       inventario.hasMany(models.detalle, {
         foreignKey: 'id_inventario'
       })

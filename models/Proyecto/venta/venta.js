@@ -6,9 +6,17 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class venta extends Model {
     static associate(models) {
+        //RELACIONES
+        //DETALLE
+        //UNA VENTA TIENE MUCHOS DETALLES
       venta.hasMany(models.detalle, {
         foreignKey: 'id_venta'
       })
+      //CLIENTE
+        //UNA VENTA PERTENECE A UN CLIENTE
+        venta.belongsTo(models.cliente, {
+            foreignKey: 'id_cliente'
+        })
     }
   };
   venta.init({
@@ -17,8 +25,8 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     },
     IVA: {
-        type: DataTypes.DECIMAL(10, 2)
-        //si no se especifica que allowNull sea falso, si permite datos nulos
+        type: DataTypes.DECIMAL(10, 2),
+        allowNull: false
     },
     fechaVenta: {
       type: DataTypes.DATEONLY,
@@ -28,10 +36,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.DECIMAL(10, 2),
         allowNull: false
     },
-    // id_cliente: {
-    //     type: DataTypes.INTEGER,
-    //     allowNull: false
-    // },
+    id_cliente: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    },
   }, {
     sequelize,
     modelName: 'venta',
