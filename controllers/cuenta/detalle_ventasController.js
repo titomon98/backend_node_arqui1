@@ -55,6 +55,8 @@ module.exports = {
                 Detalle_ventas.create(datos_ingreso)
                 //si existe muestro el objeto
                     .then(detalle_ventas => {
+                        const nuevaCantidad = productos.cantidad - datos.cantidad;
+                        productos.update({ cantidad: nuevaCantidad })
                         res.send(detalle_ventas);
                     })
                 //en caso de error muestra el mensaje
