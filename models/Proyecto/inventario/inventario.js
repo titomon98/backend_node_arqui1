@@ -18,8 +18,8 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     },
     precio: {
-        type: DataTypes.DECIMAL(10, 2)
-        //si no se especifica que allowNull sea falso, si permite datos nulos
+        type: DataTypes.DECIMAL(10, 2),
+        allowNull: false
     },
     estado: {
       type: DataTypes.INTEGER,
