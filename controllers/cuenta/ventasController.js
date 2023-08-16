@@ -21,20 +21,22 @@ module.exports = {
                 },
                 {
                     model: Detalle_ventas,
-                    attributes: ['cantidad', 'precio', 'subtotal']
+                    attributes: ['cantidad', 'precio', 'subtotal'],
+                    include: {
+                        model: Productos,
+                        attributes: ['nombre', 'precio']
+                    }
                 }
             ]
         })
             .then(cuenta => res.status(200).send(cuenta))
             .catch(error => res.status(400).send(error))
     },
-
     createVenta(req, res) {
         const datos = req.body;
         //para realizar esta función tube que comprender o algo asi, el como hacer una peticion anidada
         //primero tuve que llamar productos, para conecer el precio, luego tuve que anidad clientes para 
         //poder conocer el desceunto según el tipo.
-
         //Obtener el prducto
         Productos.findByPk(datos.id_productos)
             .then(producto => {
