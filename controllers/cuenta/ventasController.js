@@ -66,10 +66,10 @@ module.exports = {
                         };
                         //se genra la venta
                         Ventas.create(datos_ventas)
-                            .then(venta => {
+                            .then(ventas => {
                                 //se crea el contructor para los detalles de la venta
                                 const datos_detalle = {
-                                    id_ventas: venta.id,
+                                    id_ventas: ventas.id,
                                     id_productos: datos.id_productos,
                                     cantidad: datos.cantidad,
                                     precio: precio,
@@ -77,11 +77,20 @@ module.exports = {
                                 };
                                 //se crea los detalles de la venta
                                 Detalle_ventas.create(datos_detalle)
-                                    .then(detalle => {
+                                    .then(detalles => {
+                                // Restar la cantidad del producto
+                                const nuevaCantidad = producto.cantidad - datos.cantidad;
+                                producto.update({ cantidad: nuevaCantidad })
+                                    .then(() => {
                                         res.status(201).json({
-                                            venta: venta,
-                                            detalle: detalle
+                                            venta: ventas,
+                                            detalle: detalles
                                         });
+                                    })
+                                    .catch(error => {
+                                        console.log(error);
+                                        return res.status(500).json({ error: 'Error al actualizar la cantidad del producto' });
+                                    });
                                     })
                                     .catch(error => {
                                         console.log(error);
