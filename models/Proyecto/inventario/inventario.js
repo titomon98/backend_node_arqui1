@@ -10,12 +10,21 @@ module.exports = (sequelize, DataTypes) => {
       inventario.hasMany(models.detalle, {
         foreignKey: 'id_inventario'
       })
+
+      //un inventario puede tener muchos detallesC
+      inventario.hasMany(models.detalleC, {
+        foreignKey: 'id_inventario'
+      })
     }
   };
   inventario.init({
     nombre: {
       type: DataTypes.STRING,
       allowNull: false
+    },
+    cantidad: {
+        type: DataTypes.INTEGER,
+        allowNull: false
     },
     precio: {
         type: DataTypes.DECIMAL(10, 2),
