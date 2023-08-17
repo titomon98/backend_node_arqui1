@@ -14,29 +14,21 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   tipocliente.init({
-    Totalcliente: {
-      type: DataTypes.DECIMAL(10, 2),
+    normal: {
+      type: DataTypes.INTENGER ,
       allowNull: false
     },
-    IVA: {
-        type: DataTypes.DECIMAL(10, 2)
-        //si no se especifica que allowNull sea falso, si permite datos nulos
-    },
-    fechacliente: {
-      type: DataTypes.DATEONLY,
+    frecuente: {
+      type: DataTypes.INTENGER ,
       allowNull: false
     },
-    descuento: {
-        type: DataTypes.DECIMAL(10, 2),
-        allowNull: false
-    },
-    // id_cliente: {
-    //     type: DataTypes.INTEGER,
-    //     allowNull: false
-    // },
+    mayorista: {
+      type: DataTypes.INTENGER ,
+      allowNull: false
+    }
   }, {
     sequelize,
-    modelName: 'cliente',
+    modelName: 'tipocliente',
   });
-  return cliente;
+  return tipocliente;
 };
