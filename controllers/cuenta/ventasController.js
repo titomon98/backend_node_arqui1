@@ -13,7 +13,7 @@ const { Op } = require("sequelize");
 module.exports = {
     find(req, res) {
         return Ventas.findAll({
-            attributes: ['id','fecha_venta', 'total'],
+            attributes: ['id', 'fecha_venta', 'total'],
             include: [
                 {
                     model: Clientes,
@@ -78,19 +78,19 @@ module.exports = {
                                 //se crea los detalles de la venta
                                 Detalle_ventas.create(datos_detalle)
                                     .then(detalles => {
-                                // Restar la cantidad del producto
-                                const nuevaCantidad = producto.cantidad - datos.cantidad;
-                                producto.update({ cantidad: nuevaCantidad })
-                                    .then(() => {
-                                        res.status(201).json({
-                                            venta: ventas,
-                                            detalle: detalles
-                                        });
-                                    })
-                                    .catch(error => {
-                                        console.log(error);
-                                        return res.status(500).json({ error: 'Error al actualizar la cantidad del producto' });
-                                    });
+                                        // Restar la cantidad del producto
+                                        const nuevaCantidad = producto.cantidad - datos.cantidad;
+                                        producto.update({ cantidad: nuevaCantidad })
+                                            .then(() => {
+                                                res.status(201).json({
+                                                    venta: ventas,
+                                                    detalle: detalles
+                                                });
+                                            })
+                                            .catch(error => {
+                                                console.log(error);
+                                                return res.status(500).json({ error: 'Error al actualizar la cantidad del producto' });
+                                            });
                                     })
                                     .catch(error => {
                                         console.log(error);

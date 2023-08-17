@@ -23,12 +23,20 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.FLOAT,
             allowNull: false
         },
+        total: {
+            type: DataTypes.FLOAT,
+            allowNull: false
+        },
         subtotal: {
             type: DataTypes.FLOAT,
             allowNull: false
         },
         id_compras: {
             type: DataTypes.INTEGER,
+            allowNull: false
+        },
+        iva: {
+            type: DataTypes.FLOAT,
             allowNull: false
         },
         id_productos: {

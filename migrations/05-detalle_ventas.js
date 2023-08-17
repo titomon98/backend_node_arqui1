@@ -17,7 +17,15 @@ module.exports = {
                 type: Sequelize.FLOAT,
                 allowNull: false
             },
+            total:{
+                type: Sequelize.FLOAT,
+                allowNull: false
+            },
             subtotal: {
+                type: Sequelize.FLOAT,
+                allowNull: false
+            },
+            iva: {
                 type: Sequelize.FLOAT,
                 allowNull: false
             },

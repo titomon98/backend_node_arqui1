@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
         }
     };
     proveedores.init({
-        nombre: {
+        nombres: {
             type: DataTypes.STRING,
             allowNull: false
         },
