@@ -9,6 +9,8 @@ const personasController = require('../controllers/personas/personaController')
 const adminController = require('../controllers/adminController');
 const comidaController = require('../controllers/comida/comidaController');
 const ingreController = require('../controllers/ingredientes/ingreController');
+const InventarioController = require('../controllers/Inventario/InventarioController');
+
 //'../controllers/comida/comidaController' - en este caso comida es el nombre de la carpeta de los controladores o el cotrolador a usar
 
 //RUTAS
@@ -35,6 +37,11 @@ module.exports = (app) => {
     //delete productos
     router.delete('/comida/delete/:id', comidaController.delete)
     
+    //crear inventario
+    router.post('/inventario/create', InventarioController.create);
+    //update inventario
+    //delete inventario
+
     app.use('/', router);
 
 };
