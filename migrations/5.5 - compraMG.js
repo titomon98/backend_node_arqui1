@@ -1,19 +1,23 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('detalle', {
+    await queryInterface.createTable('compra', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       }, //esto tampoco cambia
-      cantidad: {
-        type: Sequelize.INTEGER,
+      TotalCompra: {
+        type: Sequelize.DECIMAL(10, 2),
         allowNull: false
       },
-      subtotal: {
-        type: Sequelize.DECIMAL(10,2),
+      IVA: {
+          type: Sequelize.DECIMAL(10, 2),
+          allowNull: false
+      },
+      fechaCompra: {
+        type: Sequelize.DATEONLY,
         allowNull: false
       },
       createdAt: {
@@ -24,25 +28,17 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       }, //estos no se cambian
-      id_inventario: {
+      id_proveedor: {
         allowNull: false,
         type: Sequelize.INTEGER,
         references: {
-            model: 'inventario',
+            model: 'proveedor',
             key: 'id'
         }
-      },
-      id_venta: {
-        allowNull: false,
-        type: Sequelize.INTEGER,
-        references: {
-            model: 'venta',
-            key: 'id'
-        }
-      },
+      }
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('detalle');
+    await queryInterface.dropTable('compra');
   }
 };
