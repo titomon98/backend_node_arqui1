@@ -44,8 +44,9 @@ module.exports = {
                     return res.status(404).json({ error: 'Producto no encontrado' });
                 }
                 const precio = producto.precio;
-                const subtotal = precio * datos.cantidad;
-                const iva = subtotal * 0.12;
+                const total = precio * datos.cantidad;
+                const iva = total * 0.12;
+                const subtotal = total + iva;
                 // Obtener el cliente, pára obtener el tipo de cliente
                 Clientes.findByPk(datos.id_clientes, {
                     include: Tipo_clientes
@@ -57,7 +58,7 @@ module.exports = {
                         // Calcular descuento basado en el tipo de cliente
                         const descuento = cliente.tipo_cliente.descuento; // Supongamos que el descuento es un valor entre 0 y 1
                         // Calcular el total con descuento
-                        const totalConDescuento = (subtotal + iva) * (1 - descuento);
+                        const totalConDescuento = subtotal   * (1 - descuento);
                         //generar constructor con los datos que iran en la venta
                         const datos_ventas = {
                             fecha_venta: new Date(),
@@ -73,7 +74,9 @@ module.exports = {
                                     id_productos: datos.id_productos,
                                     cantidad: datos.cantidad,
                                     precio: precio,
-                                    subtotal: subtotal
+                                    total: total,
+                                    subtotal: subtotal,
+                                    iva: iva
                                 };
                                 //se crea los detalles de la venta
                                 Detalle_ventas.create(datos_detalle)

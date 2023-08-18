@@ -27,59 +27,60 @@ module.exports = {
                 attributes: ['nombre', 'descripcion', 'precio'],
             },
             ]
-
         })
             .then(cuenta => res.status(200).send(cuenta))
             .catch(error => res.status(400).send(error))
     },
     create(req, res) {
-        //Crear
         //extraer datos de req.body
         const datos = req.body //Serializar los datos
-        Productos.findByPk(datos.id_productos)
+        Productos.findByPk(datos.id_productos)//Se busca el producto, con le ID indicado
             .then(productos => {
                 if (!productos) {
-                    return res.status(404).json({ error: 'Producto no encontrado' });
+                    return res.status(404).json({ error: 'Producto no encontrado' });//de no encontrarlo, lanza este error
                 }
                 //calcular el precio y subtotal
                 const precio = productos.precio;
-                const subtotal = (precio * datos.cantidad);
-                const iva = subtotal * 0.12;
+                const total= precio * datos.cantidad;
+                const iva = total * 0.12;
+                const subtotal = total+iva;
                 //creo el objeto
                 const datos_ingreso = { //Objeto
                     id_ventas: datos.id_ventas,
                     id_productos: datos.id_productos,
                     cantidad: datos.cantidad,
                     precio: precio,
-                    subtotal: subtotal
+                    total: total,
+                    subtotal: subtotal,
+                    iva:iva
                 };
-                //-------------------------
-                Clientes.findByPk(datos.id_clientes, {
-                    include: Tipo_clientes
+                Clientes.findByPk(datos.id_clientes, {//se busca el cliente que realizara esta compra
+                    include: Tipo_clientes//se ereda el tipo de cliente, para posteriormente encontrar el desceunto
                 })
                     .then(cliente => {
                         if (!cliente) {
-                            return res.status(404).json({ error: 'Cliente no encontrado' });
+                            return res.status(404).json({ error: 'Cliente no encontrado' });//de no haber encontrado el cliente, tira este error
                         }
                         // Calcular descuento basado en el tipo de cliente
-                        const descuento = cliente.tipo_cliente.descuento; // Supongamos que el descuento es un valor entre 0 y 1
-                        // Calcular el total con descuento
-                        const totalConDescuento = (subtotal + iva) * (1 - descuento);
+                        const descuento = cliente.tipo_cliente.descuento; 
+                        const totalConDescuento = subtotal  * (1 - descuento);
+                        //se busca una venta según el ID, para agregar más productos a la factura
                         Ventas.findByPk(datos.id_ventas)
                             .then(ventas => {
                                 if (!ventas) {
-                                    return res.status(404).json({ error: 'Venta no encontrada' });
+                                    return res.status(404).json({ error: 'Venta no encontrada' });//de no encontrar una venta sale este error
                                 }
+                                //se le suma al total de la venta, total de producto que se le va agregar
                                 const nuevoTotal = ventas.total + totalConDescuento;
-                                Ventas.update({ total: nuevoTotal }, { where: { id: datos.id_ventas } })
+                                Ventas.update({ total: nuevoTotal }, { where: { id: datos.id_ventas } })//se actualiza el dato en la tabla ventas
                                     .then(() => {
                                         //paso el objeto a la tabla
                                         Detalle_ventas.create(datos_ingreso)
                                             //si existe muestro el objeto
                                             .then(detalle_ventas => {
+                                                //se resta la cantidad de productos que se estan agregando a la tabla productos
                                                 const nuevaCantidad = productos.cantidad - datos.cantidad;
-
-                                                productos.update({ cantidad: nuevaCantidad })
+                                                productos.update({ cantidad: nuevaCantidad })//se actualiza
                                                     .then(() => {
                                                         res.send(detalle_ventas)
                                                     })
@@ -88,7 +89,6 @@ module.exports = {
                                                         return res.status(500).json({ error: 'Error al actualizar la cantidad del producto' });
                                                     });
                                             })
-                                            //en caso de error muestra el mensaje
                                             .catch(error => {
                                                 console.log(error)
                                                 return res.status(500).json({ error: 'Error al insertar' });
@@ -103,78 +103,11 @@ module.exports = {
                                 console.log(error)
                                 return res.status(500).json({ error: 'Error al actualizar total' });
                             });
-
                     })
                     .catch(error => {
                         console.log(error);
                         return res.status(500).json({ error: 'Error al consultar el cliente' });
                     });
-                //--------------------
-
-            })
-            .catch(error => {
-                console.log(error);
-                return res.status(500).json({ error: 'Error al consultar el producto' });
-            });
-    },
-    create2(req, res) {
-        //Crear
-        //extraer datos de req.body
-        const datos = req.body //Serializar los datos
-        Productos.findByPk(datos.id_productos)
-            .then(productos => {
-                if (!productos) {
-                    return res.status(404).json({ error: 'Producto no encontrado' });
-                }
-                //calcular el precio y subtotal
-                const precio = productos.precio;
-                const subtotal = (precio * datos.cantidad) + (precio * datos.cantidad * 0.12)
-                //creo el objeto
-                const datos_ingreso = { //Objeto
-                    id_ventas: datos.id_ventas,
-                    id_productos: datos.id_productos,
-                    cantidad: datos.cantidad,
-                    precio: precio,
-                    subtotal: subtotal
-                };
-                Ventas.findByPk(datos.id_ventas)
-                    .then(ventas => {
-                        if (!ventas) {
-                            return res.status(404).json({ error: 'Venta no encontrada' });
-                        }
-                        const nuevoTotal = ventas.total + subtotal; // Cambio realizado aquí
-                        const a = ventas.Clientes.Tipo_cliente.descuento;
-
-                        //-------------
-                        Ventas.update({ total: nuevoTotal }, { where: { id: datos.id_ventas } })
-                            .then(() => {
-                                Detalle_ventas.create(datos_ingreso)
-                                    .then(detalle_ventas => {
-                                        const nuevaCantidad = productos.cantidad - datos.cantidad;
-                                        productos.update({ cantidad: nuevaCantidad })
-                                            .then(() => {
-                                                res.status(201).json({ detalle_ventas });
-                                            })
-                                            .catch(error => {
-                                                console.log(error);
-                                                return res.status(500).json({ error: 'Error al actualizar la cantidad del producto' });
-                                            });
-                                    })
-                                    .catch(error => {
-                                        console.log(error);
-                                        return res.status(500).json({ error: 'Error al insertar detalle de venta' });
-                                    });
-                            })
-                            .catch(error => {
-                                console.log(error);
-                                return res.status(500).json({ error: 'Error al actualizar el total de la venta' });
-                            });
-                    })
-                    .catch(error => {
-                        console.log(error);
-                        return res.status(500).json({ error: 'Error al consultar la venta' });
-                    });
-
             })
             .catch(error => {
                 console.log(error);
