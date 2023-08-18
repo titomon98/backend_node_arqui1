@@ -4,6 +4,7 @@ const db = require("../../models");
 const Compras = db.compras;
 const Detalle_compras = db.detalle_compras;
 const Productos = db.productos;
+const Proveedores = db.proveedores;
 const moment = require('moment');
 const axios = require('axios')
 const { Op } = require("sequelize");
@@ -11,6 +12,21 @@ const { Op } = require("sequelize");
 module.exports = {
     find(req, res) {
         return Compras.findAll({
+            attributes: ['id', 'fecha_compra', 'total'],
+            include: [
+                {
+                    model: Proveedores,
+                    attributes: ['nombres', 'contacto', 'correo']
+                },
+                {
+                    model: Detalle_compras,
+                    attributes: ['cantidad', 'precio', 'subtotal'],
+                    include: {
+                        model: Productos,
+                        attributes: ['nombre', 'precio']
+                    }
+                }
+            ]
         })
             .then(cuenta => res.status(200).send(cuenta))
             .catch(error => res.status(400).send(error))

@@ -14,6 +14,8 @@ const detalle_ventasController = require('../controllers/cuenta/05-detalle_venta
 const proveedoresController = require('../controllers/cuenta/06-proveedoresController')
 //compras
 const comprasController = require('../controllers/cuenta/07-comprasController');
+//detalle de compras
+const detalle_comprasController = require('../controllers/cuenta/08-detalles_comprasController');
 //RUTAS
 module.exports = (app) => {
     //tipo de clientes
@@ -40,6 +42,9 @@ module.exports = (app) => {
     //compras
     router.get('/compras/find', comprasController.find);
     router.post('/compras/createCompra',comprasController.createCompra);
+    //detalle compras
+    router.get('/detalle_compras/find',detalle_comprasController.find);
+    router.post('/detalle_compras/create',detalle_comprasController.create);
     // router.put('/autores/updateName', autoresController.updateName);
     // router.get('/autores/find', autoresController.find);
     // router.delete('/autores/delete/:id', autoresController.delete);

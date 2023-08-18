@@ -6,10 +6,10 @@ module.exports = (sequelize, DataTypes) => {
     class detalle_compras extends Model {
         static associate(models) {
             detalle_compras.belongsTo(models.compras, {
-                foreignKey: 'id_detalle_compras'
+                foreignKey: 'id_compras'
             }),
             detalle_compras.belongsTo(models.productos, {
-                foreignKey: 'id_detalle_compras'
+                foreignKey: 'id_productos'
             })
         }
     };
