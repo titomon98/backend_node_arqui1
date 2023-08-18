@@ -28,6 +28,10 @@ module.exports = (sequelize, DataTypes) => {
     id_inventario: {
         type: DataTypes.INTEGER,
         allowNull: false
+    },
+    id_venta: {
+        type: DataTypes.INTEGER,
+        allowNull: false 
     }
   }, {
     sequelize,
