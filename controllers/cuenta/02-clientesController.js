@@ -62,4 +62,23 @@ module.exports = {
                 return res.status(500).json({ error: 'Error al actualizar' });
             });
     },
+    async delete (req, res) {
+        //Eliminar
+        console.log(req.params.id)
+        let id = req.params.id; //Serializamos el id
+        try {
+          //Busqueda de un objeto especifico por id
+          const clientes = await Clientes.findByPk(id);
+          //evaluamos si el objeto trajo algo
+          if (!clientes) {
+            return res.status(404).json({ error: 'clientes no encontrada' });
+          }
+          //Si pasa este punto
+          await clientes.destroy();
+          return res.json({ message: 'clientes eliminada correctamente' });
+        } catch (error) {
+          console.error('Error al eliminar clientes:', error);
+          return res.status(500).json({ error: 'Error al eliminar clientes' });
+        }
+      }
 };

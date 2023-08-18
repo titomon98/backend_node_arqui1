@@ -25,6 +25,8 @@ module.exports = (app) => {
     //clientes
     router.post('/clientes/create', clientesController.create);
     router.get('/clientes/find', clientesController.find);
+    router.delete('/clientes/delete/:id', clientesController.delete);
+    router.put('/clientes/update',clientesController.update);
     //ventas
     router.get('/ventas/find', ventasController.find);
     router.post('/ventas/createVenta', ventasController.createVenta);
@@ -45,8 +47,5 @@ module.exports = (app) => {
     //detalle compras
     router.get('/detalle_compras/find',detalle_comprasController.find);
     router.post('/detalle_compras/create',detalle_comprasController.create);
-    // router.put('/autores/updateName', autoresController.updateName);
-    // router.get('/autores/find', autoresController.find);
-    // router.delete('/autores/delete/:id', autoresController.delete);
     app.use('/', router);
 };
