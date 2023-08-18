@@ -1,20 +1,19 @@
 const { Router } = require('express');
 const router = Router();
-// productos
-const productosController = require('../controllers/cuenta/productosController');
 //tipo de clientes
-const tipo_clientesController = require('../controllers/cuenta/tipo_clientesController')
+const tipo_clientesController = require('../controllers/cuenta/01-tipo_clientesController');
 //clientes
-const clientesController = require('../controllers/cuenta/clientesController');
+const clientesController = require('../controllers/cuenta/02-clientesController');
 //ventas
-const ventasController = require('../controllers/cuenta/ventasController');
+const ventasController = require('../controllers/cuenta/03-ventasController');
+// productos
+const productosController = require('../controllers/cuenta/04-productosController');
 //detalle de ventas
-const detalle_ventasController = require('../controllers/cuenta/detalle_ventasController');
+const detalle_ventasController = require('../controllers/cuenta/05-detalle_ventasController');
+//proveedores
+const proveedoresController = require('../controllers/cuenta/06-proveedoresController')
 //RUTAS
 module.exports = (app) => {
-    //Productos
-    router.get('/productos/find', productosController.find);
-    router.post('/productos/create', productosController.create);
     //tipo de clientes
     router.get('/tipo_clientes/find', tipo_clientesController.find);
     router.post('/tipo_clientes/create', tipo_clientesController.create);
@@ -23,15 +22,19 @@ module.exports = (app) => {
     router.post('/clientes/create', clientesController.create);
     router.get('/clientes/find', clientesController.find);
     //ventas
-    
     router.get('/ventas/find', ventasController.find);
-    router.post('/ventas/createVenta',ventasController.createVenta);
-
+    router.post('/ventas/createVenta', ventasController.createVenta);
+    //Productos
+    router.get('/productos/find', productosController.find);
+    router.post('/productos/create', productosController.create);
     //detalle de ventas
     router.post('/detalle_ventas/create', detalle_ventasController.create);
     router.get('/detalle_ventas/find', detalle_ventasController.find);
-  
-    // router.put('/autores/update', autoresController.update);
+    //proveedores
+    router.get('/proveedores/find',proveedoresController.find);
+    router.post('/proveedores/create',proveedoresController.create);
+    router.put('/proveedores/update',proveedoresController.update);
+    router.delete('/proveedores/delete/:id', proveedoresController.delete);
     // router.put('/autores/updateName', autoresController.updateName);
     // router.get('/autores/find', autoresController.find);
     // router.delete('/autores/delete/:id', autoresController.delete);
