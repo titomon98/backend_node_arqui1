@@ -1,13 +1,15 @@
-const { Router } = require('express');
-const router = Router();
 
-const testController = require('../controllers/testController');
+const tiposClienteRoutes = require('./tiposCliente');
+const clientesRoutes = require('./clientes');
+const productosRoutes = require('./productos');
+const ventasRoutes = require('./ventas');
+const comprasRoutes = require('./compras');
 
 
 module.exports = (app) => {
-    //facturas
-    router.get('/hello', testController.sayHello)
-    
-    app.use('/', router);
-
+    app.use('/tiposCliente', tiposClienteRoutes);
+    app.use('/clientes', clientesRoutes);
+    app.use('/productos', productosRoutes);
+    app.use('/ventas', ventasRoutes);
+    app.use('/compras', comprasRoutes);
 };
