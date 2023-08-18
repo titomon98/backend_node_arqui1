@@ -3,17 +3,17 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class compras extends Model {
+  class detalleCompras extends Model {
     static associate(models) {
-      compras.belongsTo(models.proveedores, {
-        foreignKey: 'id_proveedor'
-      })
-      compras.hasMany(models.detalleCompras, {
+      detalleCompras.belongsTo(models.compras, {
         foreignKey: 'id_compra'
+      })
+      detalleCompras.belongsTo(models.productos, {
+        foreignKey: 'id_producto'
       })
     }
   };
-  compras.init({
+  detalleCompras.init({
     fecha: {
       type: DataTypes.DATE,
       allowNull: false
@@ -26,13 +26,17 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false
     },
-    id_proveedor: {
+    id_compra: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    id_producto: {
       type: DataTypes.INTEGER,
       allowNull: false
     }
   }, {
     sequelize,
-    modelName: 'compras',
+    modelName: 'detalleCompras',
   });
-  return compras;
+  return detalleCompras;
 };
