@@ -8,16 +8,8 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       }, //esto tampoco cambia
-      normal: {
-        type: Sequelize.INTENGER ,
-        allowNull: false
-      },
-      frecuente: {
-        type: Sequelize.INTENGER ,
-        allowNull: false
-      },
-      mayorista: {
-        type: Sequelize.INTENGER ,
+      tipofrecuencia: {
+        type: Sequelize.STRING(12),
         allowNull: false
       },
       createdAt: {

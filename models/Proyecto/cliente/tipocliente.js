@@ -14,16 +14,8 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   tipocliente.init({
-    normal: {
-      type: DataTypes.INTENGER ,
-      allowNull: false
-    },
-    frecuente: {
-      type: DataTypes.INTENGER ,
-      allowNull: false
-    },
-    mayorista: {
-      type: DataTypes.INTENGER ,
+    tipofrecuencia: {
+      type: DataTypes.STRING(12),
       allowNull: false
     }
   }, {
