@@ -6,6 +6,12 @@ module.exports = (sequelize, DataTypes) => {
   class inventarios extends Model {
     static associate(models) {
      //esta tabla esta relacionada con detalla ventas
+      inventarios.hasMany(models.detalles,{
+        foreignKey: 'inventario_id'
+      })
+      inventarios.hasMany(models.detallecompras,{
+        foreignKey: 'inventario_id'
+      })
     }
   };
   inventarios.init({

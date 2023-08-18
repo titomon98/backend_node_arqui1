@@ -26,6 +26,14 @@ module.exports = {
           allowNull: false
       },
 
+      cliente_id:{
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+            model: 'clientes',
+            key: 'id'
+        }
+      },
 
       createdAt: {
         allowNull: false,
@@ -35,6 +43,9 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       },
+
+      
+
     });
     
   },

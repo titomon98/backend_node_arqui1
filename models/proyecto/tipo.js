@@ -6,6 +6,9 @@ module.exports = (sequelize, DataTypes) => {
   class tipos extends Model {
     static associate(models) {
      //esta tabla esta relacionada con clientes
+      tipos.hasMany(models.clientes,{
+        foreignKey: 'tipo_id'
+      })
     }
   };
   tipos.init({

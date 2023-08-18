@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('ligas', {
+    await queryInterface.createTable('inventarios', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -13,19 +13,22 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
-      posición: {
-        type: Sequelize.STRING,
-        allowNull: false
+      cantidad: {
+          type: Sequelize.INTEGER,
+          allowNull: false
       },
-      tipo: {
+      precio: {
+          type: Sequelize.INTEGER,
+          allowNull: false
+      },
+      descripcion: {
           type: Sequelize.STRING,
           allowNull: false
       },
-      estado: {
-        type: Sequelize.INTEGER,
-        allowNull: false
+      fecha_vencimiento: {
+          type: Sequelize.DATE,
+          allowNull: false
       },
-
 
       createdAt: {
         allowNull: false,
@@ -36,19 +39,12 @@ module.exports = {
         type: Sequelize.DATE
       },
 
-      id_equipo: {
-        allowNull: false,
-        type: Sequelize.INTEGER,
-        references: {
-            model: 'equipos',
-            key: 'id'
-        }
-      }
+      
 
     });
     
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('ligas');
+    await queryInterface.dropTable('inventarios');
   }
 };
