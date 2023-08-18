@@ -8,7 +8,6 @@ const personasController = require('../controllers/personas/personaController')
 //admin
 const adminController = require('../controllers/adminController');
 const carroscontroller = require('../controllers/carros/carroscontroller');
-const ventascontroller = require('../controllers/ventas/ventascontroller');
 const inventarioController = require('../controllers/inventario/inventarioController');
 //RUTAS
 
@@ -30,12 +29,13 @@ module.exports = (app) => {
     //delete
     router.delete('/carros/delete/:id', carroscontroller.delete);
 
-    //create
-    router.post('/ventas/create', ventascontroller.create);
-
     //inventario
     //create
     router.post('/inventario/create', inventarioController.create);
+    //update
+    router.put('/inventario/update', inventarioController.update);
+    //delete
+    router.delete('/inventario/delete/:id', inventarioController.delete);
     
     app.use('/', router);
 

@@ -3,33 +3,31 @@ const {
     Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-    class Inventario extends Model {
+    class inventarios extends Model {
         static associate(models) {
             
         }
     };
-    Inventario.init({
-        //Definir los campos del modelo
-        //Aqui no generamos id, esto va en la migracion
+    inventarios.init({
         nombre: {
             type: DataTypes.STRING,
-            allowNull: false,
-        },
-        cantidad: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-        },
-        precio: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
+            allowNull: false
         },
         descripcion: {
             type: DataTypes.STRING,
-            allowNull: false,
+            allowNull: false
+        },
+        cantidad: {
+            type: DataTypes.INTEGER,
+            allowNull: false
+        },
+        precio: {
+            type: DataTypes.INTEGER,
+            allowNull: false
         },
     }, {
         sequelize,
-        modelName: 'Inventario',
+        modelName: 'inventarios',
     });
-    return Inventario;
+    return inventarios;
 }
