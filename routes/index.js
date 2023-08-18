@@ -10,6 +10,7 @@ const adminController = require('../controllers/adminController');
 const comidaController = require('../controllers/comida/comidaController');
 const ingreController = require('../controllers/ingredientes/ingreController');
 const InventarioController = require('../controllers/Inventario/InventarioController');
+const clientesController = require('../controllers/cliente/clientesController');
 
 
 //'../controllers/comida/comidaController' - en este caso comida es el nombre de la carpeta de los controladores o el cotrolador a usar
@@ -39,12 +40,20 @@ module.exports = (app) => {
     router.delete('/comida/delete/:id', comidaController.delete)
     
     //crear inventario
+    router.get('/inventario/find', InventarioController.find);
     router.post('/inventario/create', InventarioController.create);
     //update inventario
     router.put('/inventario/update', InventarioController.update);
     //delete inventario
     router.delete('/inventario/delete/:id', InventarioController.delete)
 
+    //crear cliente
+    router.get('/cliente/find', clientesController.find);
+    router.post('/cliente/create', clientesController.create);
+    //update cliente
+    router.put('/cliente/update', clientesController.update);
+    //delete cliente
+    router.delete('/cliente/delete/:id', clientesController.delete)
     app.use('/', router);
 
 };
