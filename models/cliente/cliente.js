@@ -5,33 +5,37 @@ const {
 module.exports = (sequelize, DataTypes) => {
     class clientes extends Model {
         static associate(models) {
-            
+            clientes.belongsTo(models.tipo_cliente, {
+                foreignKey: 'id_tipocliente'
+            })
         }
     };
+    
     clientes.init({
         nombre: {
-            type: DataTypes.STRING,
-            allowNull: false
+            type: DataTypes.INTEGER,
+            allowNull: false,
         },
         apellido: {
             type: DataTypes.STRING,
-            allowNull: false
-        },
-        telefono: {
-            type: DataTypes.INTEGER,
-            allowNull: false
+            allowNull: false,
         },
         direccion: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: false,
         },
-        tipo_cliente: {
-            type: DataTypes.STRING,
-            allowNull: false
+        telefono: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+        },
+        id_tipocliente: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
         },
     }, {
         sequelize,
         modelName: 'clientes',
+        timestamps: false
     });
-    return clientes;
+    
 }
