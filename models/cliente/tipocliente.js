@@ -25,4 +25,5 @@ module.exports = (sequelize, DataTypes) => {
         modelName: 'tipo_cliente',
         timestamps: false
     });
+    return tipo_cliente;
 }

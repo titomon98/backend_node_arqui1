@@ -8,6 +8,9 @@ module.exports = (sequelize, DataTypes) => {
             ventas.belongsTo(models.cliente, {
                 foreignKey: 'id_cliente'
             })
+            ventas.hasMany(models.detalle_venta, {
+                foreignKey: 'id_venta'
+            })
         }
     };
 
@@ -29,5 +32,6 @@ module.exports = (sequelize, DataTypes) => {
         modelName: 'ventas',
         timestamps: false
     });
-    
+    return ventas;
+
 }
