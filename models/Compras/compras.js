@@ -3,40 +3,40 @@ const {
     Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-    class inventarios extends Model {
+    class compras extends Model {
         static associate(models) {
-            inventarios.hasMany(models.detalleVentas, {
-                foreignKey: 'idInventario'
+            compras.hasMany(models.detalleCompras, {
+                foreignKey: 'idCompra'
             })
-            inventarios.hasMany(models.detalleCompras, {
-                foreignKey: 'idInventario'
+            compras.belongsTo(models.proveedores, {
+                foreignKey: 'idProveedor'
             })
         }
     };
-    inventarios.init({
-        nombre: {
-            type: DataTypes.STRING,
+    compras.init({
+        fecha: {
+            type: DataTypes.DATE,
             allowNull: false
         },
-        cantidad: {
+        idProveedor: {
             type: DataTypes.INTEGER,
             allowNull: false
         },
-        precio: {
+        total: {
             type: DataTypes.INTEGER,
             allowNull: false
         },
-        descripcion: {
-            type: DataTypes.STRING,
+        Descuento: {
+            type: DataTypes.INTEGER,
             allowNull: false
         },
-        estado: {
+        CantidadIVA: {
             type: DataTypes.INTEGER,
             allowNull: false
         },
     }, {
         sequelize,
-        modelName: 'inventarios',
+        modelName: 'compras',
     });
-    return inventarios;
-}    
+    return compras;
+}

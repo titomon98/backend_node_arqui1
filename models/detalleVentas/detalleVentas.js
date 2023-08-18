@@ -8,8 +8,11 @@ module.exports = (sequelize, DataTypes) => {
             detalleVentas.belongsTo(models.ventas, {
                 foreignKey: 'idVenta'
             })
+            detalleVentas.belongsTo(models.inventarios, {
+                foreignKey: 'idInventario'
+            })
         }
-    }
+    };
     detalleVentas.init({
         idVenta: {
             type: DataTypes.INTEGER,
@@ -31,3 +34,5 @@ module.exports = (sequelize, DataTypes) => {
         sequelize,
         modelName: 'detalleVentas',
     });
+    return detalleVentas;
+}

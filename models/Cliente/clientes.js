@@ -8,6 +8,9 @@ module.exports = (sequelize, DataTypes) => {
             clientes.belongsTo(models.tipoClientes, {
                 foreignKey: 'idtipoCliente'
             })
+            clientes.hasMany(models.ventas, {
+                foreignKey: 'idCliente'
+            })
         }
     };
     clientes.init({
