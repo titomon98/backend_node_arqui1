@@ -1,3 +1,6 @@
+// Versión: 0.1.0
+// Fecha: 2021-10-13
+// Comentario: modelo de la tabla detallemedico
 'use strict';
 const {
   Model
@@ -20,6 +23,10 @@ module.exports = (sequelize, DataTypes) => {
     cantidad: {
       type: DataTypes.INTEGER,
       allowNull: false
+    },
+    fecha: {
+        type: DataTypes.DATE,
+        allowNull: false
     },
     id_presetancion: {
         type: DataTypes.INTEGER,

@@ -1,3 +1,6 @@
+// Versión: 0.1.0
+// Fecha: 2021-10-13
+// Comentario: modelo de la tabla presentacion
 'use strict';
 const {
   Model
