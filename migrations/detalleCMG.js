@@ -24,11 +24,11 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       }, //estos no se cambian
-      id_proveedor: {
+      id_compra: {
         allowNull: false,
         type: Sequelize.INTEGER,
         references: {
-            model: 'proveedor',
+            model: 'compra',
             key: 'id'
         }
       },
