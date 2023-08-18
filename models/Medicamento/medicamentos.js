@@ -5,8 +5,8 @@ const {
 module.exports = (sequelize, DataTypes) => {
     class medicamentos extends Model {
         static associate(models) {
-            medicamentos.belongsTo(models.presentaciones, {
-                foreignKey: 'idPresentacion'
+            medicamentos.hasMany(models.detallesMedicaciones, {
+                foreignKey: 'idMedicamento'
             })
         }
     };
@@ -19,14 +19,10 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.INTEGER,
             allowNull: false
         },
-        idPresentacion: {
+        Estado: {   
             type: DataTypes.INTEGER,
             allowNull: false
-        },
-        Estado: {
-            type: DataTypes.INTEGER,
-            allowNull: false
-        },
+        },       
     }, {
         sequelize,
         modelName: 'medicamentos',
