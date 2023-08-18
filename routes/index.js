@@ -27,6 +27,7 @@ module.exports = (app) => {
     router.get('/ventas/find/id', ventasController.findById);
     router.get('/ventasDetalles/find', ventasController.findDetalle);
     router.get('/ventasDetalles/find/id', ventasController.findByIdDetalle);
+    router.get('/ventaFinal/find/id', ventasController.findVenta);
     router.post('/ventas/create', ventasController.createVenta);
     router.post('/ventas/createDetalle', ventasController.createDetalleVenta);
 
