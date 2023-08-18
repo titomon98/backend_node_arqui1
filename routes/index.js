@@ -1,25 +1,35 @@
 const { Router } = require('express');
 const router = Router();
 
-const librosController = require('../controllers/librosController');
-const editorialController = require('../controllers/editorialController');
+const clientesController = require('../controllers/clientesController');
+const productosController = require('../controllers/productosController');
+const ventasController = require('../controllers/ventasController');
 
 //RUTAS
 
 module.exports = (app) => {
 
-    //Libros
-    router.get('/libros/find', librosController.find);
-    router.get('/libros/find/id', librosController.findById);
-    router.post('/libros/create', librosController.create);
-    router.put('/libros/update', librosController.update);
-    router.delete('/libros/delete/:id', librosController.delete);
+    //Tipos de Clientes y Clientes
+    router.get('/tipoClientes/find', clientesController.findTipo);
+    router.get('/tipoClientes/find/id', clientesController.findByIdTipo);
+    router.get('/clientes/find', clientesController.find);
+    router.get('/clientes/find/id', clientesController.findById);
+    router.post('/tipoClientes/create', clientesController.createTipo);
+    router.post('/clientes/create', clientesController.create);
 
-    //editoriales
-    router.get('/editoriales/find', editorialController.find);
-    router.get('/editoriales/find/id', editorialController.findById);
-    router.post('/editoriales/create', editorialController.create);
-    router.put('/editoriales/update', editorialController.update);
-    router.delete('/editoriales/delete/:id', editorialController.delete);
+    //Productos
+    router.get('/productos/find', productosController.find);
+    router.get('/productos/find/id', productosController.findById);
+    router.post('/productos/create', productosController.create);
+
+    //Ventas y detalles ventas
+    router.get('/ventas/find', ventasController.find);
+    router.get('/ventas/find/id', ventasController.findById);
+    router.get('/ventasDetalles/find', ventasController.findDetalle);
+    router.get('/ventasDetalles/find/id', ventasController.findByIdDetalle);
+    router.post('/ventas/create', ventasController.createVenta);
+    router.post('/ventas/createDetalle', ventasController.createDetalleVenta);
+
+
     app.use('/', router);
 };
