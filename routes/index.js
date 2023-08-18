@@ -12,6 +12,8 @@ const productosController = require('../controllers/cuenta/04-productosControlle
 const detalle_ventasController = require('../controllers/cuenta/05-detalle_ventasController');
 //proveedores
 const proveedoresController = require('../controllers/cuenta/06-proveedoresController')
+//compras
+const comprasController = require('../controllers/cuenta/07-comprasController');
 //RUTAS
 module.exports = (app) => {
     //tipo de clientes
@@ -35,6 +37,9 @@ module.exports = (app) => {
     router.post('/proveedores/create',proveedoresController.create);
     router.put('/proveedores/update',proveedoresController.update);
     router.delete('/proveedores/delete/:id', proveedoresController.delete);
+    //compras
+    router.get('/compras/find', comprasController.find);
+    router.post('/compras/createCompra',comprasController.createCompra);
     // router.put('/autores/updateName', autoresController.updateName);
     // router.get('/autores/find', autoresController.find);
     // router.delete('/autores/delete/:id', autoresController.delete);
