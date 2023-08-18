@@ -34,6 +34,7 @@ module.exports = {
         references: {
           model: "clientes",
           key: "nit",
+          onDelete: 'CASCADE',
         },
       },
     });

@@ -5,6 +5,11 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       productos.hasMany(models.detalle_facturas, {
         foreignKey: "idProducto",
+        onDelete: "CASCADE",
+      });
+      productos.hasMany(models.detalle_compras, {
+        foreignKey: "idProducto",
+        onDelete: "CASCADE",
       });
     }
   }

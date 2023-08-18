@@ -8,6 +8,7 @@ module.exports = (sequelize, DataTypes) => {
       });
       clientes.hasMany(models.facturas, {
         foreignKey: "nitCliente",
+        onDelete: 'CASCADE',
       });
     }
   }

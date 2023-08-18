@@ -45,6 +45,7 @@ module.exports = {
         references: {
           model: "tipos_clientes",
           key: "id",
+          onDelete: 'CASCADE',
         },
       },
     });

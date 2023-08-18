@@ -9,6 +9,7 @@ module.exports = {
         references: {
           model: "productos",
           key: "id",
+          onDelete: 'CASCADE',
         },
       },
       idFactura: {
@@ -18,6 +19,7 @@ module.exports = {
         references: {
           model: "facturas",
           key: "id",
+          onDelete: 'CASCADE',
         },
       },
       cantidad: {
