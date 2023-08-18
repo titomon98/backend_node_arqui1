@@ -39,21 +39,6 @@ module.exports = (app) => {
     //delete productos
     router.delete('/comida/delete/:id', comidaController.delete)
     
-    //crear inventario
-    router.get('/inventario/find', InventarioController.find);
-    router.post('/inventario/create', InventarioController.create);
-    //update inventario
-    router.put('/inventario/update', InventarioController.update);
-    //delete inventario
-    router.delete('/inventario/delete/:id', InventarioController.delete)
-
-    //crear cliente
-    router.get('/cliente/find', clientesController.find);
-    router.post('/cliente/create', clientesController.create);
-    //update cliente
-    router.put('/cliente/update', clientesController.update);
-    //delete cliente
-    router.delete('/cliente/delete/:id', clientesController.delete)
     app.use('/', router);
 
 };
