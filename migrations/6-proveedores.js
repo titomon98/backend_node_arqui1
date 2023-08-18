@@ -4,9 +4,10 @@ module.exports = {
     up: (queryInterface, Sequelize) => {
         return queryInterface.createTable('proveedores', {
             id: {
-                type: Sequelize.INTEGER,
+                allowNull: false,
+                autoIncrement: true,
                 primaryKey: true,
-                autoIncrement: true
+                type: Sequelize.INTEGER
             },
             nombre: {
                 type: Sequelize.STRING,
@@ -19,6 +20,15 @@ module.exports = {
             telefono: {
                 type: Sequelize.INTEGER,
                 allowNull: false
+            },
+
+            createAt : {
+                allowNull: false,
+                type: Sequelize.DATE
+            },
+            updateAt : {
+                allowNull: false,
+                type: Sequelize.DATE
             },
         });
     },

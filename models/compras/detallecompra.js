@@ -3,17 +3,17 @@ const {
     Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-    class detalle_compra extends Model {
+    class detalle_compras extends Model {
         static associate(models) {
-            detalle_compra.belongsTo(models.compras, {
+            detalle_compras.belongsTo(models.compras, {
                 foreignKey: 'id_compra'
             })
-            detalle_compra.belongsTo(models.inventarios, {
+            detalle_compras.belongsTo(models.inventarios, {
                 foreignKey: 'id_inventario'
             })
         }
     };
-    detalle_compra.init({
+    detalle_compras.init({
         id_compra: {
             type: DataTypes.INTEGER,
             allowNull: false,
@@ -32,9 +32,9 @@ module.exports = (sequelize, DataTypes) => {
         },
     }, {
         sequelize,
-        modelName: 'detalle_compra',
+        modelName: 'detalle_compras',
         timestamps: false
     });
-    return detalle_compra;
+    return detalle_compras;
 }
     

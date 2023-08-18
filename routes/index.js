@@ -29,6 +29,7 @@ module.exports = (app) => {
     router.delete('/carros/delete/:id', carroscontroller.delete);
 
     //inventario
+    //create
 
     //cliente
     

@@ -3,15 +3,15 @@ const {
     Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-    class tipo_cliente extends Model {
+    class tipo_clientes extends Model {
         static associate(models) {
-            tipo_cliente.hasMany(models.clientes, {
+            tipo_clientes.hasMany(models.clientes, {
                 foreignKey: 'id_tipocliente'
             })
         }
     };
 
-    tipo_cliente.init({
+    tipo_clientes.init({
         tipocliente: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -25,5 +25,5 @@ module.exports = (sequelize, DataTypes) => {
         modelName: 'tipo_clientes',
         timestamps: false
     });
-    return tipo_cliente;
+    return tipo_clientes;
 }
