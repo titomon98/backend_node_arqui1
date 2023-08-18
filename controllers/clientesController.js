@@ -76,14 +76,17 @@ module.exports = {
         });
     },
 
-    /*update (req, res) {
+    update (req, res) {
         //Actualizar
         let datos = req.body
-        Editorial.update(
+        Clientes.update(
             { //En crudo
-                nombre_editorial: datos.nombre,
-                direccion: datos.direccion,
-                numero_telefonico: datos.telefono,
+                nombres: datos.nombres,
+                apellidos: datos.apellidos,
+                nit: datos.nit,
+                num_celular: datos.celular,
+                correo: datos.correo,
+                id_tipo_cliente: datos.tipo_cliente,
                 estado: datos.estado,
             },
             { 
@@ -92,14 +95,36 @@ module.exports = {
             }
             }
         )
-        .then(editorial => res.status(200).send('El registro ha sido actualizado'))
+        .then(cliente => res.status(200).send('El registro ha sido actualizado'))
         .catch(error => {
             console.log(error)
             return res.status(500).json({ error: 'Error al actualizar' });
         });
     },
 
-    async delete (req, res) {
+    updateTipo (req, res) {
+        //Actualizar
+        let datos = req.body
+        TipoClientes.update(
+            { //En crudo
+                nombre: datos.nombres,
+                descuento: datos.descuento,
+                estado: datos.estado,
+            },
+            { 
+            where: { 
+                id: datos.id 
+            }
+            }
+        )
+        .then(tipo => res.status(200).send('El registro ha sido actualizado'))
+        .catch(error => {
+            console.log(error)
+            return res.status(500).json({ error: 'Error al actualizar' });
+        });
+    },
+
+    /*async delete (req, res) {
         //Eliminar
         console.log(req.params.id)
         let id = req.params.id; //Serializamos el id
