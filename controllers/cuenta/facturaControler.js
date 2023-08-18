@@ -32,5 +32,5 @@ module.exports = {
         .then(cuenta => res.status(200).send(cuenta))
         .catch(error => res.status(400).send(error))
     } //Consulta para los que tengan un descuento mayor a 0
-};
+  };
 

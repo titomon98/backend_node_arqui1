@@ -8,20 +8,24 @@ module.exports = {
                 primaryKey: true,
                 type: Sequelize.INTEGER
             },
-            NombreProducto: {
+            nombre: {
                 type: Sequelize.STRING,
                 allowNull: false
             },
-            Cantidad: {
+            cantidad: {
                 type: Sequelize.INTEGER,
                 allowNull: false
             },
-            precioProducto: {
+            precio: {
                 type: Sequelize.INTEGER,
                 allowNull: false
             },
-            DescricionProducto: {
+            descripcion: {
                 type: Sequelize.STRING,
+                allowNull: false
+            },
+            estado: {
+                type: Sequelize.INTEGER,
                 allowNull: false
             },
             createdAt: {
@@ -38,5 +42,5 @@ module.exports = {
     },
     down: async (queryInterface, Sequelize) => {
         await queryInterface.dropTable('inventarios');
-    }
+    }   
 };
