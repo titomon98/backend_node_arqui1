@@ -39,31 +39,29 @@ module.exports = {
             return res.status(500).json({ error: 'Error al insertar' });
         });
     },
-
-    /*update (req, res) {
+    
+    updateProducto (req, res) {
         //Actualizar
         let datos = req.body
-        Editorial.update(
-            { //En crudo
-                nombre_editorial: datos.nombre,
-                direccion: datos.direccion,
-                numero_telefonico: datos.telefono,
-                estado: datos.estado,
-            },
-            { 
-            where: { 
-                id: datos.id 
-            }
-            }
-        )
-        .then(editorial => res.status(200).send('El registro ha sido actualizado'))
+        Producto.update(
+          { //En crudo
+            nombre: datos.nombre,
+            existencia: datos.existencia,
+            costo: datos.costo,
+            precio_venta: datos.venta,
+            estado: datos.estado,
+        },
+        { 
+        where: { id: datos.id }
+        })
+        .then(producto => res.status(200).send('El registro ha sido actualizado'))
         .catch(error => {
             console.log(error)
             return res.status(500).json({ error: 'Error al actualizar' });
         });
     },
 
-    async delete (req, res) {
+    /*async delete (req, res) {
         //Eliminar
         console.log(req.params.id)
         let id = req.params.id; //Serializamos el id

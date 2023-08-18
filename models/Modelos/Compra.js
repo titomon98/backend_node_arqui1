@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
       Compra.belongsTo(models.productos, {
         foreignKey: 'id_producto'
       }),
-      Compra.hasMany(models.DetalleCompra, {
+      Compra.hasMany(models.detallecompras, {
         foreignKey: 'id_compra'
       })
     }
@@ -36,7 +36,7 @@ module.exports = (sequelize, DataTypes) => {
     }, //estos no se cambian
   }, {
     sequelize,
-    modelName: 'Compra',
+    modelName: 'compras',
   });
   return Compra;
 };

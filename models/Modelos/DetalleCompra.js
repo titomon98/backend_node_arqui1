@@ -5,7 +5,7 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class DetalleCompra extends Model {
     static associate(models) {
-        DetalleCompra.belongsTo(models.Compra, {
+        DetalleCompra.belongsTo(models.compras, {
         foreignKey: 'id_compra'
       })
     }
@@ -37,7 +37,7 @@ module.exports = (sequelize, DataTypes) => {
       }, //estos no se cambian
   }, {
     sequelize,
-    modelName: 'DetalleCompra',
+    modelName: 'detallecompras',
   });
   return DetalleCompra;
 };
