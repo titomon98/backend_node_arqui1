@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     };
 
     tipo_cliente.init({
-        nombre: {
+        tipocliente: {
             type: DataTypes.STRING,
             allowNull: false,
         },
