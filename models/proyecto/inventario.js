@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
   };
   inventarios.init({
     nombre: {
-      type: DataTypes.DATE,
+      type: DataTypes.STRING,
       allowNull: false
     },
     cantidad: {

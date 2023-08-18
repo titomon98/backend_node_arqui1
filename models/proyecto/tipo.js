@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
   };
   tipos.init({
     nombre: {
-      type: DataTypes.DATE,
+      type: DataTypes.STRING,
       allowNull: false
     },
     descripcion: {

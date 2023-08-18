@@ -17,7 +17,10 @@ const clientecontroller = require('../controllers/proyecto/Clientecontroller');
 const detallecontroller = require('../controllers/proyecto/detallecontroller');
 const inventariocontroller = require('../controllers/proyecto/inventariocontroller');
 const tipocontroller = require('../controllers/proyecto/tipocontroller');
-const ventacontroller = require('../controllers/proyecto/ventacontroller');
+const ventacontroller = require('../controllers/proyecto/ventaController');
+const detallecompracontroller = require('../controllers/proyecto/detalle_compracontroller');
+const comprascontroller = require('../controllers/proyecto/comprascontroller');
+const proveedorescontroller = require('../controllers/proyecto/proveedorescontroller');
 
 
 module.exports = (app) => {
@@ -76,6 +79,25 @@ module.exports = (app) => {
     router.post('/venta/create', ventacontroller.create);
     router.put('/venta/update', ventacontroller.update);
     router.delete('/venta/delete/:id', ventacontroller.delete);
+
+    //detalle compra
+    router.get('/detalle_compra/find', detallecompracontroller.find);
+    router.post('/detalle_compra/create', detallecompracontroller.create);
+    router.put('/detalle_compra/update', detallecompracontroller.update);
+    router.delete('/detalle_compra/delete/:id', detallecompracontroller.delete);
+
+    //compras
+    router.get('/compras/find', comprascontroller.find);
+    router.post('/compras/create', comprascontroller.create);
+    router.put('/compras/update', comprascontroller.update);
+    router.delete('/compras/delete/:id', comprascontroller.delete);
+
+    //proveedores
+    router.get('/proveedores/find', proveedorescontroller.find);
+    router.post('/proveedores/create', proveedorescontroller.create);
+    router.put('/proveedores/update', proveedorescontroller.update);
+    router.delete('/proveedores/delete/:id', proveedorescontroller.delete);
+
 
     app.use('/', router);
 

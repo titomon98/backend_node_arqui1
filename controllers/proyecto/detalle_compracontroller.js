@@ -1,15 +1,14 @@
 'use strict'
 const Sequelize     = require('sequelize');
 const db = require("../../models");
-const Detalles = db.detalles;
-const DetalleDetalles = db.detalle_detalles;
+const DetallesCompras = db.detallescompras;
 const moment = require('moment');
 const axios = require('axios')
 const { Op } = require("sequelize");
 
 module.exports = {
     find (req, res) {
-        return Detalles.findAll()
+        return DetalleCompras.findAll()
         .then(cuenta => res.status(200).send(cuenta))
         .catch(error => res.status(400).send(error))
     },
@@ -27,9 +26,9 @@ module.exports = {
             subtotal: cantidad * 15,
         };
 
-        Detalles.create(datos_ingreso)
-        .then(detalles => {
-            res.send(detalles);
+        DetalleCompras.create(datos_ingreso)
+        .then(detallecompras => {
+            res.send(detallecompras);
         })
         .catch(error => {
             console.log(error)
@@ -41,7 +40,7 @@ module.exports = {
     update (req, res) {
         //Actualizar
         let datos = req.body
-          Detalles.update(
+          DetalleCompras.update(
             { //En crudo
               //falta agregar la relacion entre tablas
               venta_id: datos.venta_id,
@@ -55,7 +54,7 @@ module.exports = {
               }
             }
           )
-          .then(detalles => res.status(200).send('El registro ha sido actualizado'))
+          .then(detallecompras => res.status(200).send('El registro ha sido actualizado'))
           .catch(error => {
               console.log(error)
               return res.status(500).json({ error: 'Error al actualizar' });
@@ -68,14 +67,14 @@ module.exports = {
         let id = req.params.id; //Serializamos el id
         try {
           //Busqueda de un objeto especifico por id
-          const detalles = await Detalles.findByPk(id);
+          const detallecompras = await DetalleCompras.findByPk(id);
           //evaluamos si el objeto trajo algo
-          if (!detalles) {
-            return res.status(404).json({ error: 'Detalles no encontrado' });
+          if (!detallecompras) {
+            return res.status(404).json({ error: 'DetalleCompras no encontrado' });
           }
           //Si pasa este punto
-          await detalles.destroy();
-          return res.json({ message: 'Detalles eliminado correctamente' });
+          await detallecompras.destroy();
+          return res.json({ message: 'DetalleCompras eliminado correctamente' });
         } catch (error) {
           console.error('Error al eliminar equipo:', error);
           return res.status(500).json({ error: 'Error al eliminar equipo' });

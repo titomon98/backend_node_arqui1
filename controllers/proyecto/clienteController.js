@@ -2,14 +2,19 @@
 const Sequelize     = require('sequelize');
 const db = require("../../models");
 const Clientes = db.clientes;
-const DetalleCliente = db.detalle_clientes;
+const Tipos = db.tipos;
 const moment = require('moment');
 const axios = require('axios')
 const { Op } = require("sequelize");
 
 module.exports = {
     find (req, res) {
-        return Clientes.findAll()
+        return Clientes.findAll({
+            include: {
+                model: Tipos,
+                attibutes: ['nombre', 'descripcion', 'descuento']
+            }
+        })
         .then(cuenta => res.status(200).send(cuenta))
         .catch(error => res.status(400).send(error))
     },
@@ -25,6 +30,7 @@ module.exports = {
             telefono: datos.telefono,
             direccion: datos.direccion,
             email: datos.email,
+            tipo_id: datos.tipo_id,
         };
 
         Clientes.create(datos_ingreso)
@@ -48,6 +54,7 @@ module.exports = {
                 telefono: datos.telefono,
                 direccion: datos.direccion,
                 email: datos.email,
+                tipo_id: datos.tipo_id,
             },
             { 
               where: { 

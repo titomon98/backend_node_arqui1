@@ -2,7 +2,6 @@
 const Sequelize     = require('sequelize');
 const db = require("../../models");
 const Ventas = db.ventas;
-const DetalleCliente = db.detalle_ventas;
 const moment = require('moment');
 const axios = require('axios')
 const { Op } = require("sequelize");
@@ -13,38 +12,33 @@ module.exports = {
         .then(cuenta => res.status(200).send(cuenta))
         .catch(error => res.status(400).send(error))
     },
-
+    
     create (req, res) {
-        //Crear
-        //extraer datos de req.body
-        let datos = req.body //Serializar los datos
-        const datos_ingreso = { //Objeto
-            fecha_venta: datos.fecha_venta,
-            total_venta: datos.total_venta,
-            descuento_aplicado: datos.descuento_aplicado,
-            monto_iva: datos.monto_iva,
-        };
+      //Crear
+      //extraer datos de req.body
+      let datos = req.body //Serializar los datos
+      const datos_ingreso = { //Objeto
+          fecha_venta: datos.fecha_venta,
+          cliente_id: datos.cliente_id,
+      };
 
-        Ventas.create(datos_ingreso)
-        .then(ventas => {
-            res.send(ventas);
-        })
-        .catch(error => {
-            console.log(error)
-            return res.status(500).json({ error: 'Error al insertar' });
-        });
-    }, 
-
-
+      Ventas.create(datos_ingreso)
+      .then(ventas => {
+          res.send(ventas);
+      })
+      .catch(error => {
+          console.log(error)
+          return res.status(500).json({ error: 'Error al insertar' });
+      });
+  },
+  
     update (req, res) {
         //Actualizar
         let datos = req.body
           Ventas.update(
             { //En crudo
-                fecha_venta: datos.fecha_venta,
-                total_venta: datos.total_venta,
-                descuento_aplicado: datos.descuento_aplicado,
-                monto_iva: datos.monto_iva,
+              fecha_venta: datos.fecha_venta,
+              cliente_id: datos.cliente_id,
             },
             { 
               where: { 

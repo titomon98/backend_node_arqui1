@@ -21,9 +21,9 @@ module.exports = {
         const datos_ingreso = { //Objeto
             nombre: datos.nombre,
             descripcion: datos.descripcion,
-            cantidad: datos.cantidad,
-            precio: datos.precio,
             fecha_vencimiento: datos.fecha_vencimiento,
+            cantidad: datos.cantidad,
+            precio: cantidad * 15,
         };
 
         Inventarios.create(datos_ingreso)
@@ -41,11 +41,11 @@ module.exports = {
         let datos = req.body
           Inventarios.update(
             { //En crudo
-                nombre: datos.nombre,
-                descripcion: datos.descripcion,
-                cantidad: datos.cantidad,
-                precio: datos.precio,
-                fecha_vencimiento: datos.fecha_vencimiento,
+              nombre: datos.nombre,
+              descripcion: datos.descripcion,
+              fecha_vencimiento: datos.fecha_vencimiento,
+              cantidad: datos.cantidad,
+              precio: cantidad * 15,
             },
             { 
               where: { 
