@@ -24,14 +24,14 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       }, //estos no se cambian
-      id_tipocliente: {
-        allowNull: false,
-        type: Sequelize.INTEGER,
-        references: {
-            model: 'tipocliente',
-            key: 'id'
-        }
-      }
+      // id_tipocliente: {
+      //   allowNull: false,
+      //   type: Sequelize.INTEGER,
+      //   references: {
+      //       model: 'tipocliente',
+      //       key: 'id'
+      //   }
+      // }
     });
   },
   down: async (queryInterface, Sequelize) => {

@@ -1,5 +1,4 @@
 'use strict';
-const { all } = require('axios');
 const {
   Model
 } = require('sequelize');

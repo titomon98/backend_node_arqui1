@@ -1,10 +1,7 @@
 'use strict';
-
-const sequelize = require("sequelize");
-
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('detalleC', {
+    await queryInterface.createTable('detalle', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -27,14 +24,6 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       }, //estos no se cambian
-      id_proveedor: {
-        allowNull: false,
-        type: Sequelize.INTEGER,
-        references: {
-            model: 'proveedor',
-            key: 'id'
-        }
-      },
       id_inventario: {
         allowNull: false,
         type: Sequelize.INTEGER,
@@ -42,10 +31,18 @@ module.exports = {
             model: 'inventario',
             key: 'id'
         }
-      }
+      },
+      id_venta: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+            model: 'venta',
+            key: 'id'
+        }
+      },
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('detalleC');
+    await queryInterface.dropTable('detalle');
   }
 };

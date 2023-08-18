@@ -6,13 +6,13 @@ module.exports = (sequelize, DataTypes) => {
   class detalle extends Model {
     static associate(models) {
       // define association here
+      // 1 detalle pertenece a 1 inventario
+      detalle.belongsTo(models.inventario,{
+        foreignKey: 'id_inventario'
+      })
       // 1 detalle pertenece a 1 venta
         detalle.belongsTo(models.venta,{
             foreignKey: 'id_venta'
-          })
-        // 1 detalle pertenece a 1 inventario
-        detalle.belongsTo(models.inventario,{
-            foreignKey: 'id_inventario'
           })
     }
   };
@@ -32,7 +32,7 @@ module.exports = (sequelize, DataTypes) => {
     id_venta: {
         type: DataTypes.INTEGER,
         allowNull: false 
-    }
+    },
   }, {
     sequelize,
     modelName: 'detalle',
