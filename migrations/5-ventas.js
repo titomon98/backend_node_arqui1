@@ -8,32 +8,33 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      pertenece_a: {
-        type: Sequelize.STRING,
-        allowNull: false
-      },
-      nit: {
-        type: Sequelize.STRING,
-        allowNull: false
-      },
-      direccion: {
-        type: Sequelize.STRING,
-        allowNull: false
-      },
-      total: {
-        type: Sequelize.STRING,
-        allowNull: false
-      },
-      codigo_factura: {
-        type: Sequelize.STRING,
-      },
-      descuento: {
-        type: Sequelize.STRING,
-      },
-      estado: {
+      NoFactura: {
         type: Sequelize.INTEGER,
         allowNull: false
       },
+    NombreCliente: {
+      type: Sequelize.STRING,
+      allowNull: false
+    },
+    Fecha: {
+      type: Sequelize.DATE,
+      allowNull: false
+    },
+    Decripcion: {
+      type: Sequelize.STRING,
+      allowNull: false
+    },
+    NombreProducto: {
+      type: Sequelize.STRING,
+      allowNull: false
+    },
+    Cantidad: {
+      type: Sequelize.INTEGER,
+    },
+    CantidadIVA: {
+      type: Sequelize.INTEGER,
+      allowNull: false
+    },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
