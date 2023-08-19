@@ -40,7 +40,7 @@ module.exports = {
     //update
     update (req, res) {
         let datos = req.body
-
+        
         DETALLE_MEDICACION.update(
             {
                 idPresentacion: datos.idPresentacion,

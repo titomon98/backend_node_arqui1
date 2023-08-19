@@ -40,7 +40,7 @@ module.exports = {
     //update
     update (req, res) {
         let datos = req.body
-
+ if (datos.Cantidad > 0) {
         MEDICAMENTOS.update(
             {
                 NombreMedicamento: datos.NombreMedicamento,
@@ -59,7 +59,11 @@ module.exports = {
             console.log(error)
             return res.status(500).json({ error: 'Error al actualizar' });
         });
-    },
+    } else {
+        return res.status(400).send('No se puede actualizar el registro YA QUE NO hay existencia suficiente')
+    }
+    },  
+
 
     //delete
     async delete (req, res) {
