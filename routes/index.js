@@ -9,6 +9,10 @@ const personasController = require('../controllers/personas/personaController')
 const adminController = require('../controllers/adminController');
 const controladorproductos = require('../controllers/productos/controladorproductos');
 const tiendacontroller = require('../controllers/tienda/tiendacontroller');
+
+//presentacion
+const presentacionController = require('../controllers/presentacion/presentacionController');
+
 //RUTAS
 
 module.exports = (app) => {
@@ -35,5 +39,12 @@ module.exports = (app) => {
     router.put('/productos/update', controladorproductos.update);
     //delete productos
     router.delete('/productos/delete/:id', controladorproductos.delete);
+
+    // //presentacion
+    router.get('/presentacion/find', presentacionController.find);
+    router.get('/presentacion/find/id', presentacionController.findById);
+    router.post('/presentacion/create', presentacionController.create);
+    router.put('/presentacion/update', presentacionController.update);
+    router.delete('/presentacion/delete/:id', presentacionController.delete);
 
 };

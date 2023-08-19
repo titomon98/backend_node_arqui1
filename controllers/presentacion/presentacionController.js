@@ -1,41 +1,37 @@
-'use strict'
-const Sequelize     = require('sequelize');
+//controlador de presentacion
+'use strict';
 const db = require("../../models");
-const Producto = db.productos;
+const Presentacion = db.presentacion;
 const moment = require('moment');
 const axios = require('axios')
 const { Op } = require("sequelize");
 
 module.exports = {
+    //find all
     find (req, res) {
-        return Producto.findAll()
+        return Presentacion.findAll()
         .then(cuenta => res.status(200).send(cuenta))
         .catch(error => res.status(400).send(error))
     },
-
+    //find by id
     findById (req, res) {
         let id = req.body.id
-        return Producto.findByPk(id)
+        return Presentacion.findByPk(id)
         .then(cuenta => res.status(200).send(cuenta))
         .catch(error => res.status(400).send(error))
     }, //Consulta por medio de una llave primaria*/
-
     //create
     create (req, res) {
         //Crear
         //extraer datos de req.body
         let datos = req.body //Serializar los datos
         const datos_ingreso = { //Objeto
-            nombre: datos.nombre,
-            marca: datos.marca,
-            precio: datos.precio,
-            descuento: datos.descuento,
-            estado: datos.estado,
+            tipopresentacion: datos.tipopresentacion,
         };
 
-        Producto.create(datos_ingreso)
-        .then(productos => {
-            res.send(productos);
+        Presentacion.create(datos_ingreso)
+        .then(presentacion => {
+            res.send(presentacion);
         })
         .catch(error => {
             console.log(error)
@@ -48,9 +44,7 @@ module.exports = {
         let datos = req.body
           Producto.update(
             { //En crudo
-                nombre: datos.nombre,
-                marca: datos.marca,
-                precio: datos.precio,
+                tipopresentacion: datos.tipopresentacion,
             },
             { 
               where: { 
@@ -58,7 +52,7 @@ module.exports = {
               }
             }
           )
-          .then(productos => res.status(200).send('El registro ha sido actualizado'))
+          .then(presentacion => res.status(200).send('El registro ha sido actualizado'))
           .catch(error => {
               console.log(error)
               return res.status(500).json({ error: 'Error al actualizar' });
@@ -72,14 +66,14 @@ module.exports = {
         let id = req.params.id; //Serializamos el id
         try {
           //Busqueda de un objeto especifico por id
-          const productos = await Producto.findByPk(id);
+          const presentacion = await Presentacion.findByPk(id);
           //evaluamos si el objeto trajo algo
-          if (!productos) {
-            return res.status(404).json({ error: 'Producto no encontrado' });
+          if (!presentacion) {
+            return res.status(404).json({ error: 'Presentacion no encontrado' });
           }
           //Si pasa este punto
-          await productos.destroy();
-          return res.json({ message: 'Producto eliminado correctamente' });
+          await presentacion.destroy();
+          return res.json({ message: 'Presentacion eliminado correctamente' });
         } catch (error) {
           console.error('Error al eliminar producto:', error);
           return res.status(500).json({ error: 'Error al eliminar producto' });
