@@ -14,6 +14,9 @@ const InventarioController = require('../controllers/inventario/inventarioContro
 const clientesController = require('../controllers/clientes/clientesController');
 const tipoClientesController = require('../controllers/clientes/tipoClientes');
 const detalleVentasController = require('../controllers/ventas/detalleVentasController');
+const presentacionController = require('../controllers/presentacion/presentacionController');
+const medicamentosController = require('../controllers/medicamentos/medicamentosControler');
+const detalleMedicacionController = require('../controllers/detalleMedicamento/detalleMedicacionController');
 //'../controllers/comida/comidaController' - en este caso comida es el nombre de la carpeta de los controladores o el cotrolador a usar
 
 //RUTAS
@@ -76,6 +79,27 @@ module.exports = (app) => {
     router.put('/detalleVentas/update', detalleVentasController.update);
     router.delete('/detalleVentas/delete/:id', detalleVentasController.delete);
     
+
+    //rutaas presentacion
+    router.get('/presentacion/find', presentacionController.findPresentacion);
+    router.post('/presentacion/create', presentacionController.create);
+    router.put('/presentacion/update', presentacionController.update);
+    router.delete('/presentacion/delete/:id', presentacionController.delete);
+
+
+    //rutas medicamentos
+    router.get('/medicamentos/find', medicamentosController.findMedicamentos);
+    router.post('/medicamentos/create', medicamentosController.create);
+    router.put('/medicamentos/update', medicamentosController.update);
+    router.delete('/medicamentos/delete/:id', medicamentosController.delete);
+
+    //rutas detalleMedicacion
+    router.get('/detalleMedicacion/find', detalleMedicacionController.findDetalleMedicacion);
+    router.post('/detalleMedicacion/create', detalleMedicacionController.create);
+    router.put('/detalleMedicacion/update', detalleMedicacionController.update);
+    router.delete('/detalleMedicacion/delete/:id', detalleMedicacionController.delete);
+
+
     app.use('/', router);
 
 };
