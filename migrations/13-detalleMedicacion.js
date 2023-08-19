@@ -8,19 +8,19 @@ module.exports = {
                 primaryKey: true,
                 type: Sequelize.INTEGER
             },
-            idMedicamento: {
-                type: Sequelize.INTEGER,
-                allowNull: false,
-                references: {
-                    model: 'medicamentos',
-                    key: 'id'
-                }
-            },
             idPresentacion: {
                 type: Sequelize.INTEGER,
                 allowNull: false,
                 references: {
                     model: 'presentaciones',
+                    key: 'id'
+                }
+            },
+            idMedicamento: {
+                type: Sequelize.INTEGER,
+                allowNull: false,
+                references: {
+                    model: 'medicamentos',
                     key: 'id'
                 }
             },
