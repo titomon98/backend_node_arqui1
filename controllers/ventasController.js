@@ -85,9 +85,9 @@ module.exports = {
             return res.status(404).json({ error: 'Producto no encontrado' });
           }
 
-          const nuevaCantidad = parseInt(producto.existencia) - parseInt(datos.existencia);
+          const nuevaCantidad = parseInt(producto.existencia) - parseInt(datos.cantidad);
 
-          if(parseInt(datos.existencia) < parseInt(producto.existencia))
+          if(parseInt(datos.cantidad) < parseInt(producto.existencia))
           {
             Producto.update({existencia: nuevaCantidad},
               {
