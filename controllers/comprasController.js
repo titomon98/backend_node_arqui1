@@ -113,9 +113,9 @@ module.exports = {
           return res.status(404).json({ error: 'Producto no encontrado' });
         }
 
-        const nuevaCantidad = parseInt(producto.cantidad) + parseInt(datos.cantidad);
+        const nuevaCantidad = parseInt(producto.existencia) + parseInt(datos.cantidad);
 
-        Producto.update({cantidad: nuevaCantidad},
+        Producto.update({existencia: nuevaCantidad},
         {
           where: {id: producto.id}
         })

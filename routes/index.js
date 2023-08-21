@@ -24,7 +24,7 @@ module.exports = (app) => {
     router.get('/productos/find', productosController.find);
     router.get('/productos/find/id', productosController.findById);
     router.post('/productos/create', productosController.create);
-    router.put('/productos/update', productosController.updateProducto);
+    router.put('/productos/update', productosController.update);
 
     //Ventas y detalles ventas
     router.get('/ventas/find', ventasController.find);

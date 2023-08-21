@@ -40,7 +40,7 @@ module.exports = {
         });
     },
     
-    updateProducto (req, res) {
+    update (req, res) {
         //Actualizar
         let datos = req.body
         Producto.update(
