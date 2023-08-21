@@ -51,7 +51,7 @@ module.exports = {
       .catch(error => res.status(400).send(error))
   },
 
-  createCompra(req, res) {
+  /*createCompra(req, res) {
     //Crear
     //extraer datos de req.body
     let datos = req.body //Serializar los datos
@@ -92,6 +92,50 @@ module.exports = {
         console.log(error)
         return res.status(500).json({ error: 'Error al insertar' });
       });
+  },*/
+
+  createCompra(req, res) {
+    //Crear
+    //extraer datos de req.body
+    let datos = req.body //Serializar los datos
+
+    const datos_ingreso = { //Objeto
+      id_producto: datos.id_producto,
+      cantidad: datos.cantidad,
+      estado: 1,
+    };
+    
+    Compra.create(datos_ingreso)
+    .then(Compra => {
+      Producto.findByPk(datos.id_producto)
+      .then(producto => {
+        if(!producto){
+          return res.status(404).json({ error: 'Producto no encontrado' });
+        }
+
+        const nuevaCantidad = parseInt(producto.cantidad) - parseInt(datos.cantidad);
+
+        if(parseInt(datos.cantidad) < parseInt(producto.cantidad))
+        {
+          Producto.update({cantidad: nuevaCantidad},
+            {
+              where: {id: producto.id}
+            })
+            .then(producto => res.status(200).send('El registro ha sido actualizado'))
+            .catch(error => {console.log(error) 
+              return res.status(500).json({ error: 'Error al actualizar' });
+            });
+        }
+        else
+        {
+          return res.status(500).json({ error: 'Producto insuficiente'});
+        }
+      })
+    })
+    .catch(error => {
+      console.log(error)
+      return res.status(500).json({ error: 'Error al insertar' });
+    });
   },
 
   createDetalleCompra(req, res) {
