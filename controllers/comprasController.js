@@ -113,23 +113,16 @@ module.exports = {
           return res.status(404).json({ error: 'Producto no encontrado' });
         }
 
-        const nuevaCantidad = parseInt(producto.cantidad) - parseInt(datos.cantidad);
+        const nuevaCantidad = parseInt(producto.cantidad) + parseInt(datos.cantidad);
 
-        if(parseInt(datos.cantidad) < parseInt(producto.cantidad))
+        Producto.update({cantidad: nuevaCantidad},
         {
-          Producto.update({cantidad: nuevaCantidad},
-            {
-              where: {id: producto.id}
-            })
-            .then(producto => res.status(200).send('El registro ha sido actualizado'))
-            .catch(error => {console.log(error) 
-              return res.status(500).json({ error: 'Error al actualizar' });
-            });
-        }
-        else
-        {
-          return res.status(500).json({ error: 'Producto insuficiente'});
-        }
+          where: {id: producto.id}
+        })
+        .then(producto => res.status(200).send('El registro ha sido actualizado'))
+        .catch(error => {console.log(error) 
+          return res.status(500).json({ error: 'Error al actualizar' });
+        });
       })
     })
     .catch(error => {
