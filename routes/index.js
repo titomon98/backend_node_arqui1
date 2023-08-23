@@ -20,15 +20,18 @@ const detalle_comprasController = require('../controllers/cuenta/08-detalles_com
 module.exports = (app) => {
     //tipo de clientes
     router.get('/tipo_clientes/find', tipo_clientesController.find);
+    router.get('/tipo_clientes/findId/:id',tipo_clientesController.findId)
     router.post('/tipo_clientes/create', tipo_clientesController.create);
     router.put('/tipo_clientes/update', tipo_clientesController.update);
     //clientes
     router.post('/clientes/create', clientesController.create);
     router.get('/clientes/find', clientesController.find);
+    router.get('/clientes/findId/:id',clientesController.findId)
     router.delete('/clientes/delete/:id', clientesController.delete);
     router.put('/clientes/update',clientesController.update);
     //ventas
     router.get('/ventas/find', ventasController.find);
+    router.get('/ventas/findId/:id',ventasController.findId);
     router.post('/ventas/createVenta', ventasController.createVenta);
     //Productos
     router.get('/productos/find', productosController.find);

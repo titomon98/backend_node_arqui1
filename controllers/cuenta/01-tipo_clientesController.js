@@ -14,6 +14,20 @@ module.exports = {
         .then(cuenta => res.status(200).send(cuenta))
         .catch(error => res.status(400).send(error))
     },
+    findId(req, res) {
+        const ID = req.params.id; // Obtén el ID del registro a buscar
+        Tipo_Clientes.findByPk(ID)
+            .then(registro => {
+                if (!registro) {
+                    return res.status(404).json({ error: 'Tipo de cliente no encontrado' });
+                }
+                res.status(200).json({ registro });
+            })
+            .catch(error => {
+                console.log(error);
+                return res.status(500).json({ error: 'Error al buscar el tipo de cliente' });
+            });
+    },    
     create (req, res) {
       //Crear
       //extraer datos de req.body

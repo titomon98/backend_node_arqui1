@@ -32,6 +32,49 @@ module.exports = {
             .then(cuenta => res.status(200).send(cuenta))
             .catch(error => res.status(400).send(error))
     },
+    findId(req, res) {
+        const ID = req.params.id;
+        Ventas.findByPk(ID)
+            .then(ventas => {
+                if (!ventas) {
+                    return res.status(404).send({ error: 'Venta no encontrada' })
+                }
+                //res.status(200).send({ventas})
+                const IDClientes = ventas.id_clientes;
+                Clientes.findByPk(IDClientes)
+                    .then(clientes => {
+                        if (!clientes) {
+                            return res.status(404).send({ error: 'cliente no encontrado' })
+                        }
+                        const IDTipoClientes = clientes.id_tipo_clientes;
+                        Tipo_clientes.findByPk(IDTipoClientes)
+                            .then(tipo_clientes => {
+                                if (!tipo_clientes) {
+                                    return res.status(404).send({ error: 'Tipo de cliente no encontrado' })
+                                }
+                                const response = {
+                                    ventas: ventas,
+                                    clientes: clientes,
+                                    tipo_cliente: tipo_clientes
+                                }
+                                res.status(200).send({ response })
+
+                            })
+                            .catch(error => {
+                                console.log(error);
+                                return res.status(404).send({ error: 'Error al buscar el tipo de cliente' })
+                            })
+                    })
+                    .catch(error => {
+                        console.log(error);
+                        return res.status(404).send({ error: 'Error al buscar cliente' })
+                    })
+            })
+            .catch(error => {
+                console.log(error);
+                return res.status(404).send({ error: 'Error al buscar la venta' })
+            })
+    },
     createVenta(req, res) {
         const datos = req.body;
         //para realizar esta función tube que comprender o algo asi, el como hacer una peticion anidada
@@ -58,7 +101,7 @@ module.exports = {
                         // Calcular descuento basado en el tipo de cliente
                         const descuento = cliente.tipo_cliente.descuento; // Supongamos que el descuento es un valor entre 0 y 1
                         // Calcular el total con descuento
-                        const totalConDescuento = subtotal   * (1 - descuento);
+                        const totalConDescuento = subtotal * (1 - descuento);
                         //generar constructor con los datos que iran en la venta
                         const datos_ventas = {
                             fecha_venta: new Date(),

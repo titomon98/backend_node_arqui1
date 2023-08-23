@@ -19,6 +19,35 @@ module.exports = {
         .then(cuenta => res.status(200).send(cuenta))
         .catch(error => res.status(400).send(error))
     },
+    findId(req, res) {
+        const ID = req.params.id; // Obtén el ID del clientes a buscar
+        Clientes.findByPk(ID)
+            .then(clientes => {
+                if (!clientes) {
+                    return res.status(404).send({ error: 'Cliente no encontrado' });
+                }
+                const IDTipoCliente = clientes.id_tipo_clientes;
+                Tipo_clientes.findByPk(IDTipoCliente)
+                .then(tipo_clientes =>{
+                    if (!tipo_clientes) {
+                        return res.status(404).send({ error: 'Cliente no encontrado' });
+                    }
+                    const response={
+                        clientes: clientes,
+                        tipo_clientes: tipo_clientes
+                    };
+                    res.status(200).send({response});
+                })
+                .catch(error => {
+                    console.log(error);
+                    return res.status(500).send({ error: 'Error al buscar el cliente' });
+                });
+            })
+            .catch(error => {
+                console.log(error);
+                return res.status(500).send({ error: 'Error al buscar el cliente' });
+            });
+    }, 
     create (req, res) {
       //Crear
       //extraer datos de req.body
