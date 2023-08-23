@@ -1,8 +1,8 @@
 {
   "development": {
-    "username": "root",
-    "password": null,
-    "database": "prueba",
+    "username": "ProduDev",
+    "password": "83yX*1!LkpGj",
+    "database": "punto_venta_arqui",
     "host": "127.0.0.1",
     "dialect": "mysql",
     "operatorAliases": false,
