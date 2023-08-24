@@ -13,9 +13,9 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'id_cliente'
       })
       // 1 cliente tiene un tipo de cliente
-        // cliente.belongsTo(models.tipocliente, {
-        //     foreignKey: 'id_tipocliente'
-        // })
+        cliente.belongsTo(models.tipocliente, {
+            foreignKey: 'id_tipocliente'
+        })
     }
   };
   cliente.init({
@@ -34,6 +34,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'cliente',
+    freezeTableName: true,
   });
   return cliente;
 };

@@ -16,8 +16,9 @@ const inventarioController = require('../controllers/inventario/inventarioContro
 const tipoclienteController = require('../controllers/tipocliente/tipoclienteController');
 //proveedor
 const proveedorController = require('../controllers/proveedor/proveedorController');
+//cliente
+const clienteController = require('../controllers/cliente/clienteController');
 //RUTAS
-
 module.exports = (app) => {
     //facturas
     router.get('/factura/find', facturasController.find);
@@ -42,6 +43,9 @@ module.exports = (app) => {
 
     //proveedor
     router.get('/proveedor/find', proveedorController.find);
+
+    //cliente
+    router.get('/cliente/find', clienteController.find);
     
     app.use('/', router);
 

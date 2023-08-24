@@ -1,20 +1,21 @@
-//Controlador de proveedor
+//Controlador de cliente
 'use strict'
 const Sequelize = require('sequelize');
 const db = require("../../models");
-const proveedor = require('../../models/Proyecto/compra/proveedor');
-const Proveedor = db.proveedor;
+const cliente = require('../../models/Proyecto/cliente/cliente');
+const { up } = require('../../migrations/5.3 - clienteMG');
+const Cliente = db.cliente;
 
 module.exports = {
     find (req, res) {
-        return Proveedor.findAll()
+        return Cliente.findAll()
         .then(cuenta => res.status(200).send(cuenta))
         .catch(error => res.status(400).send(error))
     },
 
     findById (req, res) {
         let id = req.body.id
-        return Proveedor.findByPk(id)
+        return Cliente.findByPk(id)
         .then(cuenta => res.status(200).send(cuenta))
         .catch(error => res.status(400).send(error))
     }, //Consulta por medio de una llave primaria
@@ -26,12 +27,17 @@ module.exports = {
         let datos = req.body //Serializar los datos
         const datos_ingreso = { //Objeto
             nombre: datos.nombre,
+            apellido: datos.apellido,
+            direccion: datos.direccion,
+            telefono: datos.telefono,
+            correo: datos.correo,
             estado: datos.estado,
+            id_tipocliente: datos.id_tipocliente,
         };
 
-        Proveedor.create(datos_ingreso)
-        .then(proveedor => {
-            res.send(proveedor);
+        Cliente.create(datos_ingreso)
+        .then(cliente => {
+            res.send(cliente);
         })
         .catch(error => {
             console.log(error)
@@ -43,10 +49,15 @@ module.exports = {
     update (req, res) {
         //Actualizar
         let datos = req.body
-            Proveedor.update(
+            Cliente.update(
             { //En crudo
                 nombre: datos.nombre,
+                apellido: datos.apellido,
+                direccion: datos.direccion,
+                telefono: datos.telefono,
+                correo: datos.correo,
                 estado: datos.estado,
+                id_tipocliente: datos.id_tipocliente,
             },
             {
                 where: {
@@ -54,8 +65,8 @@ module.exports = {
                 }
             }
             )
-            .then(proveedor => res.status(200).send('El registro ha sido actualizado'))
-            .catch(error => { 
+            .then(cliente => res.status(200).send('El registro ha sido actualizado'))
+            .catch(error => {
                 console.log(error)
                 return res.status(500).json({ error: 'Error al actualizar' });
             });
@@ -68,17 +79,17 @@ module.exports = {
         let id = req.params.id; //Serializamos el id
         try {
           //Busqueda de un objeto especifico por id
-          const proveedor = await Proveedor.findByPk(id);
+          const cliente = await Cliente.findByPk(id);
           //evaluamos si el objeto trajo algo
-          if (!proveedor) {
-            return res.status(404).json({ error: 'Proveedor no encontrado' });
+          if (!cliente) {
+            return res.status(404).json({ error: 'Producto no encontrado' });
           }
           //Si pasa este punto
-          await proveedor.destroy();
-          return res.json({ message: 'Proveedor eliminado correctamente' });
+          await cliente.destroy();
+          return res.json({ message: 'Cliente eliminado correctamente' });
         } catch (error) {
-          console.error('Error al eliminar proveedor:', error);
-          return res.status(500).json({ error: 'Error al eliminar proveedor' });
+          console.error('Error al eliminar CLiente:', error);
+          return res.status(500).json({ error: 'Error al eliminar Cliente' });
         }
-      }
+      }  
 };

@@ -69,14 +69,14 @@ module.exports = {
           const tipocliente = await TipoCliente.findByPk(id);
           //evaluamos si el objeto trajo algo
           if (!tipocliente) {
-            return res.status(404).json({ error: 'Producto no encontrado' });
+            return res.status(404).json({ error: 'Tipo de Cliente no encontrado' });
           }
           //Si pasa este punto
           await tipocliente.destroy();
-          return res.json({ message: 'Producto eliminado correctamente' });
+          return res.json({ message: 'Tipo de Cliente eliminado correctamente' });
         } catch (error) {
-          console.error('Error al eliminar producto:', error);
-          return res.status(500).json({ error: 'Error al eliminar producto' });
+          console.error('Error al eliminar Tipo de Cliente:', error);
+          return res.status(500).json({ error: 'Error al eliminar Tipo de Cliente' });
         }
       }
 };
