@@ -12,6 +12,10 @@ const tiendacontroller = require('../controllers/tienda/tiendacontroller');
 
 //inventario
 const inventarioController = require('../controllers/inventario/inventarioController');
+//tipo cliente
+const tipoclienteController = require('../controllers/tipocliente/tipoclienteController');
+//proveedor
+const proveedorController = require('../controllers/proveedor/proveedorController');
 //RUTAS
 
 module.exports = (app) => {
@@ -32,6 +36,12 @@ module.exports = (app) => {
 
     //inventario
     router.get('/inventario/find', inventarioController.find);
+
+    //tipo cliente
+    router.get('/tipocliente/find', tipoclienteController.find);
+
+    //proveedor
+    router.get('/proveedor/find', proveedorController.find);
     
     app.use('/', router);
 
@@ -48,5 +58,19 @@ module.exports = (app) => {
     router.put('/inventario/update', inventarioController.update);
     //delete inventario
     router.delete('/inventario/delete/:id', inventarioController.delete);
+
+    //create tipo cliente
+    router.post('/tipocliente/create', tipoclienteController.create);
+    //update tipo cliente
+    router.put('/tipocliente/update', tipoclienteController.update);
+    //delete tipo cliente
+    router.delete('/tipocliente/delete/:id', tipoclienteController.delete);
+
+    //create proveedor
+    router.post('/proveedor/create', proveedorController.create);
+    //update proveedor
+    router.put('/proveedor/update', proveedorController.update);
+    //delete proveedor
+    router.delete('/proveedor/delete/:id', proveedorController.delete);
 
 };
