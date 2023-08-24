@@ -61,6 +61,27 @@ module.exports = {
           });
       },
 
+      updateOtro (req, res) {
+        //Actualizar
+        let datos = req.body
+        TipoCliente.update(
+            { //En crudo
+              nombre: datos.nombre,
+              descuento: datos.descuento,
+            },
+            { 
+              where: { 
+                id: datos.id 
+              }
+            } 
+          )
+          .then(tipoCliente => res.status(200).send('El registro ha sido actualizado'))
+          .catch(error => {
+              console.log(error)
+              return res.status(500).json({ error: 'Error al actualizar' });
+          });
+      },
+
       async delete (req, res) {
         //Eliminar
         console.log(req.params.id)

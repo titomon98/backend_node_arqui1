@@ -11,6 +11,7 @@ const adminController = require('../controllers/adminController');
 //carro
 const carroController = require('../controllers/carro/carroController');
 const tipoClienteController = require('../controllers/cliente/tipoClienteController');
+const clienteController = require('../controllers/cliente/clienteController');
 //RUTAS
 
 module.exports = (app) => {
@@ -32,8 +33,13 @@ module.exports = (app) => {
     //TipoCliente
     router.get('/cliente/tipo/find',tipoClienteController.find);
     router.post('/cliente/tipo/create', tipoClienteController.create);
+    router.put('/cliente/tipo/update2', tipoClienteController.updateOtro);
     router.put('/cliente/tipo/update', tipoClienteController.update);
     router.delete('/cliente/tipo/delete/:id', tipoClienteController.delete);
+
+    //Cliente
+    router.post('/cliente/create', clienteController.create);
+    router.get('/cliente/find', clienteController.find);
     
     
     app.use('/', router);

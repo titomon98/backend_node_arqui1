@@ -25,14 +25,12 @@ module.exports = {
         //extraer datos de req.body
         let datos = req.body //Serializar los datos
         const datos_ingreso = { //Objeto
-            marca: datos.marca,
-            modelo: datos.modelo,
-            motor: datos.motor,
-            precio: datos.precio,
-            chasis: datos.chasis,
-            fecha_ingreso: datos.fecha_ingreso,
-            estado: datos.estado,
-            id_persona: datos.id_persona
+            nombre: datos.nombre,
+            nit: datos.nit,
+            contacto: datos.contacto,
+            direccion: datos.direccion,
+            estado: 0,
+            id_tipoCliente: datos.id_tipoCliente
         };
   
         Cliente.create(datos_ingreso)
