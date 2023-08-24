@@ -5,7 +5,7 @@ const {
 module.exports = (sequelize, DataTypes) => {
     class compras extends Model {
         static associate(models) {
-            compras.hasMany(models.detalle_compra, {
+            compras.hasMany(models.detalle_compras, {
                 foreignKey: 'id_compra'
             })
             compras.belongsTo(models.proveedores, {

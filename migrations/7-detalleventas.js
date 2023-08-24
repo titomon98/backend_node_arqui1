@@ -33,11 +33,11 @@ module.exports = {
                     key: 'id'
                 }
             },
-            createAt: {
+            createdAt: {
                 allowNull: false,
                 type: Sequelize.DATE
             },
-            updateAt: {
+            updatedAt: {
                 allowNull: false,
                 type: Sequelize.DATE
             },

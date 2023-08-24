@@ -5,10 +5,10 @@ const {
 module.exports = (sequelize, DataTypes) => {
     class inventarios extends Model {
         static associate(models) {
-            inventarios.hasMany(models.detalle_venta, {
+            inventarios.hasMany(models.detalle_ventas, {
                 foreignKey: 'id_inventario'
             })
-            inventarios.hasMany(models.detalle_compra, {
+            inventarios.hasMany(models.detalle_compras, {
                 foreignKey: 'id_inventario'
             })
         }
