@@ -1,25 +1,23 @@
+//Controlador de inventario
 'use strict'
-const Sequelize     = require('sequelize');
+const Sequelize = require('sequelize');
 const db = require("../../models");
-const Producto = db.productos;
-const moment = require('moment');
-const axios = require('axios')
-const { Op } = require("sequelize");
-//const productos = require('../../models/productos/productos');
+const inventario = require('../../models/Proyecto/inventario/inventario');
+const Inventario = db.inventario;
 
 module.exports = {
     find (req, res) {
-        return Producto.findAll()
+        return Inventario.findAll()
         .then(cuenta => res.status(200).send(cuenta))
         .catch(error => res.status(400).send(error))
     },
 
     findById (req, res) {
         let id = req.body.id
-        return Producto.findByPk(id)
+        return Inventario.findByPk(id)
         .then(cuenta => res.status(200).send(cuenta))
         .catch(error => res.status(400).send(error))
-    }, //Consulta por medio de una llave primaria*/
+    }, //Consulta por medio de una llave primaria
 
     //create
     create (req, res) {
@@ -28,15 +26,14 @@ module.exports = {
         let datos = req.body //Serializar los datos
         const datos_ingreso = { //Objeto
             nombre: datos.nombre,
-            marca: datos.marca,
+            cantidad: datos.cantidad,
             precio: datos.precio,
-            descuento: datos.descuento,
             estado: datos.estado,
         };
 
-        Producto.create(datos_ingreso)
-        .then(productos => {
-            res.send(productos);
+        Inventario.create(datos_ingreso)
+        .then(inventario => {
+            res.send(inventario);
         })
         .catch(error => {
             console.log(error)
@@ -47,11 +44,12 @@ module.exports = {
     update (req, res) {
         //Actualizar
         let datos = req.body
-          Producto.update(
+          Inventario.update(
             { //En crudo
                 nombre: datos.nombre,
-                marca: datos.marca,
+                cantidad: datos.cantidad,
                 precio: datos.precio,
+                estado: datos.estado,
             },
             { 
               where: { 
@@ -59,7 +57,7 @@ module.exports = {
               }
             }
           )
-          .then(productos => res.status(200).send('El registro ha sido actualizado'))
+          .then(inventario => res.status(200).send('El registro ha sido actualizado'))
           .catch(error => {
               console.log(error)
               return res.status(500).json({ error: 'Error al actualizar' });
@@ -73,13 +71,13 @@ module.exports = {
         let id = req.params.id; //Serializamos el id
         try {
           //Busqueda de un objeto especifico por id
-          const productos = await Producto.findByPk(id);
+          const inventario = await Inventario.findByPk(id);
           //evaluamos si el objeto trajo algo
-          if (!productos) {
+          if (!inventario) {
             return res.status(404).json({ error: 'Producto no encontrado' });
           }
           //Si pasa este punto
-          await productos.destroy();
+          await inventario.destroy();
           return res.json({ message: 'Producto eliminado correctamente' });
         } catch (error) {
           console.error('Error al eliminar producto:', error);

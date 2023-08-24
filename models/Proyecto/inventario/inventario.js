@@ -37,6 +37,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'inventario',
+    freezeTableName: true,    // Evita la pluralización automáticamente
   });
   return inventario;
 };

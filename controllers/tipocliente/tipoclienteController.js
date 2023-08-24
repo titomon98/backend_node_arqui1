@@ -1,57 +1,50 @@
+//Controlador de Tipo de Cliente
 'use strict'
-const Sequelize     = require('sequelize');
+const Sequelize = require('sequelize');
 const db = require("../../models");
-const Producto = db.productos;
-const moment = require('moment');
-const axios = require('axios')
-const { Op } = require("sequelize");
-//const productos = require('../../models/productos/productos');
+const tipocliente = require('../../models/Proyecto/cliente/tipocliente');
+const TipoCliente = db.tipocliente;
 
 module.exports = {
     find (req, res) {
-        return Producto.findAll()
+        return TipoCliente.findAll()
         .then(cuenta => res.status(200).send(cuenta))
         .catch(error => res.status(400).send(error))
     },
 
     findById (req, res) {
         let id = req.body.id
-        return Producto.findByPk(id)
+        return TipoCliente.findByPk(id)
         .then(cuenta => res.status(200).send(cuenta))
         .catch(error => res.status(400).send(error))
-    }, //Consulta por medio de una llave primaria*/
+    }, //Consulta por medio de una llave primaria
 
-    //create
+    //create    
     create (req, res) {
         //Crear
         //extraer datos de req.body
         let datos = req.body //Serializar los datos
         const datos_ingreso = { //Objeto
-            nombre: datos.nombre,
-            marca: datos.marca,
-            precio: datos.precio,
-            descuento: datos.descuento,
-            estado: datos.estado,
+            tipofrecuencia: datos.tipofrecuencia,
         };
 
-        Producto.create(datos_ingreso)
-        .then(productos => {
-            res.send(productos);
+        TipoCliente.create(datos_ingreso)
+        .then(tipocliente => {
+            res.send(tipocliente);
         })
         .catch(error => {
             console.log(error)
             return res.status(500).json({ error: 'Error al insertar' });
         });
     },
+
     //update
     update (req, res) {
         //Actualizar
         let datos = req.body
-          Producto.update(
+          TipoCliente.update(
             { //En crudo
-                nombre: datos.nombre,
-                marca: datos.marca,
-                precio: datos.precio,
+                tipofrecuencia: datos.tipofrecuencia,
             },
             { 
               where: { 
@@ -59,7 +52,7 @@ module.exports = {
               }
             }
           )
-          .then(productos => res.status(200).send('El registro ha sido actualizado'))
+          .then(tipocliente => res.status(200).send('El registro ha sido actualizado'))
           .catch(error => {
               console.log(error)
               return res.status(500).json({ error: 'Error al actualizar' });
@@ -73,13 +66,13 @@ module.exports = {
         let id = req.params.id; //Serializamos el id
         try {
           //Busqueda de un objeto especifico por id
-          const productos = await Producto.findByPk(id);
+          const tipocliente = await TipoCliente.findByPk(id);
           //evaluamos si el objeto trajo algo
-          if (!productos) {
+          if (!tipocliente) {
             return res.status(404).json({ error: 'Producto no encontrado' });
           }
           //Si pasa este punto
-          await productos.destroy();
+          await tipocliente.destroy();
           return res.json({ message: 'Producto eliminado correctamente' });
         } catch (error) {
           console.error('Error al eliminar producto:', error);
