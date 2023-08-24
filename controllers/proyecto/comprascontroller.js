@@ -2,13 +2,21 @@
 const Sequelize     = require('sequelize');
 const db = require("../../models");
 const Compras = db.compras;
+const Proveedores = db.proveedores;
 const moment = require('moment');
 const axios = require('axios')
 const { Op } = require("sequelize");
 
 module.exports = {
     find (req, res) {
-        return Compras.findAll()
+        return Compras.findAll(
+          {
+            include: {
+              model: Proveedores,
+              attibutes: ['nombre', 'apellido', 'telefono', 'direccion', 'email']
+            }
+          }
+        )
         .then(cuenta => res.status(200).send(cuenta))
         .catch(error => res.status(400).send(error))
     },
@@ -17,13 +25,15 @@ module.exports = {
         //Crear
         //extraer datos de req.body
         let datos = req.body //Serializar los datos
+        let montoIVA = datos.total * 0.12;
         const datos_ingreso = { //Objeto
 
             //falta agregar la relacion entre tablas
             proveedor_id: datos.proveedor_id,
+            nombre: datos.nombre,
             fecha_compra: datos.fechacompra,
-            total_compra: 150,
-            monto_IVA: 15,
+            total: datos.total,
+            monto_IVA: montoIVA,
         };
 
         Compras.create(datos_ingreso)

@@ -13,8 +13,12 @@ module.exports = {
         type: Sequelize.DATE,
         allowNull: false,
         },
-        total_compra: {
-            type: Sequelize.DECIMAL(10,2),
+        nombre: {
+            type: Sequelize.STRING,
+            allowNull: false,
+        },
+        total: {
+            type: Sequelize.INTEGER,
             allowNull: false,
         },
         monto_IVA: {

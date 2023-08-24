@@ -21,8 +21,12 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.DATE,
         allowNull: false,
     },
-    total_compra: {
-        type: DataTypes.DECIMAL(10,2),
+    nombre: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
+    total: {
+        type: DataTypes.INTEGER,
         allowNull: false,
     },
     monto_IVA: {
