@@ -77,4 +77,11 @@ module.exports = (app) => {
     //delete proveedor
     router.delete('/proveedor/delete/:id', proveedorController.delete);
 
+    //create cliente
+    router.post('/cliente/create', clienteController.create);
+    //update cliente
+    router.put('/cliente/update', clienteController.update);
+    //delete cliente
+    router.delete('/cliente/delete/:id', clienteController.delete);
+
 };

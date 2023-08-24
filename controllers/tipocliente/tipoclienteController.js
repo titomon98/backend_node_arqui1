@@ -26,6 +26,7 @@ module.exports = {
         let datos = req.body //Serializar los datos
         const datos_ingreso = { //Objeto
             tipofrecuencia: datos.tipofrecuencia,
+            descuento: datos.descuento,
         };
 
         TipoCliente.create(datos_ingreso)
@@ -45,6 +46,7 @@ module.exports = {
           TipoCliente.update(
             { //En crudo
                 tipofrecuencia: datos.tipofrecuencia,
+                descuento: datos.descuento,
             },
             { 
               where: { 

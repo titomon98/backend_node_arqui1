@@ -6,6 +6,7 @@ const cliente = require('../../models/Proyecto/cliente/cliente');
 const { up } = require('../../migrations/5.3 - clienteMG');
 const Cliente = db.cliente;
 
+
 module.exports = {
     find (req, res) {
         return Cliente.findAll()
@@ -27,11 +28,7 @@ module.exports = {
         let datos = req.body //Serializar los datos
         const datos_ingreso = { //Objeto
             nombre: datos.nombre,
-            apellido: datos.apellido,
-            direccion: datos.direccion,
-            telefono: datos.telefono,
-            correo: datos.correo,
-            estado: datos.estado,
+            NIT: datos.NIT,
             id_tipocliente: datos.id_tipocliente,
         };
 
@@ -52,11 +49,7 @@ module.exports = {
             Cliente.update(
             { //En crudo
                 nombre: datos.nombre,
-                apellido: datos.apellido,
-                direccion: datos.direccion,
-                telefono: datos.telefono,
-                correo: datos.correo,
-                estado: datos.estado,
+                NIT: datos.NIT,
                 id_tipocliente: datos.id_tipocliente,
             },
             {
