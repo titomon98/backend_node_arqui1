@@ -27,6 +27,10 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.INTEGER,
             allowNull: false,
         },
+        iva: {
+            type: DataTypes.DECIMAL,
+            allowNull: false,
+        }
     }, {
         sequelize,
         modelName: 'ventas',

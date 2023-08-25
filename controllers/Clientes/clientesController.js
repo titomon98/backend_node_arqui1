@@ -11,7 +11,13 @@ module.exports = {
         return CLIENTE.findAll()
         .then(cuenta => res.status(200).send(cuenta))
         .catch(error => res.status(400).send(error))
-        },
+    },
+    findById (req, res) {
+      let id = req.body.id
+      return CLIENTE.findByPk(id)
+      .then(cuenta => res.status(200).send(cuenta))
+      .catch(error => res.status(400).send(error))
+    },
 
     //create
     create (req, res) {
