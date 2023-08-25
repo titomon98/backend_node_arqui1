@@ -124,24 +124,24 @@ module.exports = {
         });
     },
 
-    /*async delete (req, res) {
+    async deleteTipo (req, res) {
         //Eliminar
         console.log(req.params.id)
         let id = req.params.id; //Serializamos el id
         try {
           //Busqueda de un objeto especifico por id
-        const editorial = await Editorial.findByPk(id);
+        const tipoCliente = await TipoClientes.findByPk(id);
           //evaluamos si el objeto trajo algo
-        if (!editorial) {
-            return res.status(404).json({ error: 'Editorial no encontrada' });
+        if (!tipoCliente) {
+            return res.status(404).json({ error: 'Tipo de cliente no encontrado' });
         }
           //Si pasa este punto
-        await editorial.destroy(); 
-        return res.json({ message: 'Editorial eliminada correctamente' });
+        await tipoCliente.destroy(); 
+        return res.json({ message: 'Tipo de cliente eliminado correctamente' });
         } catch (error) {
-        console.error('Error al eliminar editorial:', error);
-        return res.status(500).json({ error: 'Error al eliminar editorial' });
+        console.error('Error al eliminar tipo de cliente:', error);
+        return res.status(500).json({ error: 'Error al eliminar tipo de cliente' });
         }
-    },*/
+    },
 };
 
