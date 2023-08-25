@@ -1,16 +1,15 @@
 'use strict'
-const Sequelize     = require('sequelize');
+const Sequelize = require('sequelize');
 const db = require("../../models");
 const Cliente = db.clientes;
 const moment = require('moment');
-const axios = require('axios')
+const axios = require('axios');
 const { Op } = require("sequelize");
-//const persona = db.personas;
 
 module.exports = {
     find (req, res) {
         return Cliente.findAll()
-        .then(cuenta => res.status(200).send(cuenta))
+        .then(cliente => res.status(200).send(cliente))
         .catch(error => res.status(400).send(error))
     },
 
@@ -34,8 +33,8 @@ module.exports = {
         };
   
         Cliente.create(datos_ingreso)
-        .then(carro => {
-            res.send(carro);
+        .then(cliente => {
+            res.send(cliente);
         })
         .catch(error => {
             console.log(error)

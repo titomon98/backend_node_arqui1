@@ -14,11 +14,15 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   detalleVentas.init({
-    fecha: {
-      type: DataTypes.DATE,
+    cantidad: {
+      type: DataTypes.INTEGER,
       allowNull: false
     },
-    total: {
+    subTotal: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    iva: {
       type: DataTypes.INTEGER,
       allowNull: false
     },

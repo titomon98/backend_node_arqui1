@@ -12,6 +12,9 @@ const adminController = require('../controllers/adminController');
 const carroController = require('../controllers/carro/carroController');
 const tipoClienteController = require('../controllers/cliente/tipoClienteController');
 const clienteController = require('../controllers/cliente/clienteController');
+const proveedoresController = require('../controllers/proveedores/proveedoresController');
+const productoController = require('../controllers/producto/productoController');
+const ventaController = require('../controllers/venta/ventaController');
 //RUTAS
 
 module.exports = (app) => {
@@ -40,7 +43,17 @@ module.exports = (app) => {
     //Cliente
     router.post('/cliente/create', clienteController.create);
     router.get('/cliente/find', clienteController.find);
+
+    //Proveedor
+    router.post('/proveedor/create', proveedoresController.create);
+    router.get('/proveedor/find', proveedoresController.find);
+
+    //Producto
+    router.post('/producto/create', productoController.create);
+    router.get('/producto/find', productoController.find);
     
+    //venta
+    router.post('/venta/create', ventaController.realizarVenta);
     
     app.use('/', router);
 
