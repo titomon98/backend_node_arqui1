@@ -16,6 +16,9 @@ const suppliersController = require('../controllers/sales_point/suppliersControl
 // Products
 const productsController = require('../controllers/sales_point/productsController')
 
+// Purchasing
+const purchasingController = require('../controllers/sales_point/purchasingController')
+
 // RUTAS
 module.exports = (app) => {
     // Client Types
@@ -52,6 +55,10 @@ module.exports = (app) => {
     router.post('/products/create', productsController.create)
     router.put('/products/update', productsController.update)
     router.delete('/products/delete/:id', productsController.delete)
+
+    // Purchases
+    router.post('/purchase/create', purchasingController.create)
+    router.post('/purchase/add_product', purchasingController.addProduct)
     
     app.use('/', router);
 };
