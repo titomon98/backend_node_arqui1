@@ -5,22 +5,18 @@ const {
 module.exports = (sequelize, DataTypes) => {
     class proveedores extends Model {
         static associate(models) {
-            proveedores.hasMany(models.compras, {
-                foreignKey: 'idProveedor'
+            proveedores.hasMany(models.detalleCompras, {
+                foreignKey: 'Id_Proveedor'
             })
         }
     };
     proveedores.init({
-        nombre: {
+        Nombre_Proveedor: {
             type: DataTypes.STRING,
             allowNull: false
         },
-        telefono: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
-        correo: {
-            type: DataTypes.STRING,
+        Telefono_Proveedor: {
+            type: DataTypes.INTEGER,
             allowNull: false
         },
     }, {
@@ -28,4 +24,4 @@ module.exports = (sequelize, DataTypes) => {
         modelName: 'proveedores',
     });
     return proveedores;
-}
+};

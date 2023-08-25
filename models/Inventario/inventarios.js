@@ -5,32 +5,31 @@ const {
 module.exports = (sequelize, DataTypes) => {
     class inventarios extends Model {
         static associate(models) {
-            inventarios.hasMany(models.detalleVentas, {
-                foreignKey: 'idInventario'
+            inventarios.belongsTo(models.proveedores, {
+                foreignKey: 'Id_Proveedor'
+            })
+            inventarios.hasMany(models.detalle_ventas, {
+                foreignKey: 'Id_Producto'
             })
             inventarios.hasMany(models.detalleCompras, {
-                foreignKey: 'idInventario'
+                foreignKey: 'Id_Producto'
             })
         }
     };
     inventarios.init({
-        nombre: {
+        Nombre_Producto: {
             type: DataTypes.STRING,
             allowNull: false
         },
-        cantidad: {
+        Cantidad_Producto: {
             type: DataTypes.INTEGER,
             allowNull: false
         },
-        precio: {
-            type: DataTypes.INTEGER,
+        Precio_Producto: {
+            type: DataTypes.DECIMAL,
             allowNull: false
         },
-        descripcion: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
-        estado: {
+        Id_Proveedor : {
             type: DataTypes.INTEGER,
             allowNull: false
         },
@@ -39,4 +38,4 @@ module.exports = (sequelize, DataTypes) => {
         modelName: 'inventarios',
     });
     return inventarios;
-}    
+}

@@ -9,9 +9,6 @@ const personasController = require('../controllers/personas/personaController')
 const adminController = require('../controllers/adminController');
 const comidaController = require('../controllers/comida/comidaController');
 const ingreController = require('../controllers/ingredientes/ingreController');
-const InventarioController = require('../controllers/Inventario/InventarioController');
-const clientesController = require('../controllers/cliente/clientesController');
-
 
 //'../controllers/comida/comidaController' - en este caso comida es el nombre de la carpeta de los controladores o el cotrolador a usar
 

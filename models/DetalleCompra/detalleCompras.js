@@ -6,29 +6,32 @@ module.exports = (sequelize, DataTypes) => {
     class detalleCompras extends Model {
         static associate(models) {
             detalleCompras.belongsTo(models.compras, {
-                foreignKey: 'idCompra'
+                foreignKey: 'Id_Compra'
             })
             detalleCompras.belongsTo(models.inventarios, {
-                foreignKey: 'idInventario'
+                foreignKey: 'Id_Producto'
             })
         }
     };
     detalleCompras.init({
-        idCompra: {
+        Id_Compra: {
             type: DataTypes.INTEGER,
             allowNull: false
         },
-        idinventario: {
+        Id_Producto: {
             type: DataTypes.INTEGER,
             allowNull: false
         },
-        
-        cantidad: {
+        cantidad_Producto: {
             type: DataTypes.INTEGER,
             allowNull: false
         },
-        Subtotal: {
-            type: DataTypes.INTEGER,
+        Precio_Compra: {
+            type: DataTypes.DECIMAL,
+            allowNull: false
+        },
+        Subtotal_Compra : {
+            type: DataTypes.DECIMAL,
             allowNull: false
         },
     }, {
@@ -36,5 +39,4 @@ module.exports = (sequelize, DataTypes) => {
         modelName: 'detalleCompras',
     });
     return detalleCompras;
-}
-
+};  

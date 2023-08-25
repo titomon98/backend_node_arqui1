@@ -5,32 +5,21 @@ const {
 module.exports = (sequelize, DataTypes) => {
     class clientes extends Model {
         static associate(models) {
-            clientes.belongsTo(models.tipoClientes, {
-                foreignKey: 'idtipoCliente'
-            })
-            clientes.hasMany(models.ventas, {
-                foreignKey: 'idCliente'
+            clientes.belongsTo(models.tipo_clientes, {
+                foreignKey: 'Id_TipoCliente'
             })
         }
     };
     clientes.init({
-        nombreCliente: {
+        Nombre_Cliente: {
             type: DataTypes.STRING,
             allowNull: false
         },
-        apellidoCliente: { 
+        Apellido_Cliente: {
             type: DataTypes.STRING,
             allowNull: false
         },
-        telefono: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
-        direccion: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
-        idtipoCliente: {
+        Id_TipoCliente: {
             type: DataTypes.INTEGER,
             allowNull: false
         },
@@ -39,5 +28,4 @@ module.exports = (sequelize, DataTypes) => {
         modelName: 'clientes',
     });
     return clientes;
-
-}
+};
