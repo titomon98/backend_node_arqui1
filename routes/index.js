@@ -11,9 +11,9 @@ const comidaController = require('../controllers/comida/comidaController');
 const ingreController = require('../controllers/ingredientes/ingreController');
 const tipo_clientesController = require('../controllers/tipoClientes/tipoClientesController');
 const proveedoresController = require('../controllers/proveedor/proveedoresController');
-const comprasController = require('../controllers/compras/comprasController');
 const inventariosController = require('../controllers/inventario/inventariosController');
 const ventasController = require('../controllers/ventas/ventasController');
+const comprasController = require('../controllers/compra/comprasController');
 //'../controllers/comida/comidaController' - en este caso comida es el nombre de la carpeta de los controladores o el cotrolador a usar
 
 //RUTAS
@@ -52,12 +52,6 @@ module.exports = (app) => {
     router.put('/proveedores/update', proveedoresController.update);
     router.delete('/proveedores/delete/:id', proveedoresController.delete);
 
-    //compras
-    router.get('/compras/find', comprasController.find);
-    router.post('/compras/create', comprasController.create);
-    router.put('/compras/update', comprasController.update);
-    router.delete('/compras/delete/:id', comprasController.delete);
-
     //inventario
     router.get('/inventario/find', inventariosController.find);
     router.post('/inventario/create', inventariosController.create);
@@ -69,6 +63,10 @@ module.exports = (app) => {
     router.get('/ventas/find', ventasController.find);
     router.post('/ventas/create', ventasController.create);
 
+
+    //compras
+    router.get('/compras/find', comprasController.find);
+    router.post('/compras/create', comprasController.create);
     app.use('/', router);
 
 };

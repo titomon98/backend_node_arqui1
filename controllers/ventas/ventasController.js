@@ -64,13 +64,16 @@ module.exports = {
            totalDescuento = totalVentas * descuentoCliente/100;
         }
         totalVentas = totalVentas - totalDescuento;
-        const venta = await VENTAS.create({
+        
+        const venta = await VENTAS.create({           
             Id_Cliente: idCliente,
             Fecha: new Date(),
             Total_Venta: totalVentas,
             Descuento_Aplicado: totalDescuento,
             IVA_Venta: totalVentas * 0.12
         });
+       
+
         for(const productoV of productos){
             await DETALLEVENTAS.create({
                 Id_Venta: venta.id,

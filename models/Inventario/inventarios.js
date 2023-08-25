@@ -29,7 +29,7 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.DECIMAL,
             allowNull: false
         },
-        Id_Proveedor : {
+        Id_Proveedor: {
             type: DataTypes.INTEGER,
             allowNull: false
         },
