@@ -2,12 +2,18 @@
 const base = require("../serverResponses")
 const db = require("../../models")
 const ClientType = db.clientTypes
+const Client = db.clients
 
 module.exports = {
     findAll (req, res) {
-        return ClientType.findAll()
-            .then(clientTypes =>
-                base.dataStatusOk(res, clientTypes)
+        return Client.findAll({
+            include: {
+                model: ClientType,
+                attributes: ['name', 'description', 'discount_percentage']
+            }
+        })
+            .then(clients =>
+                base.dataStatusOk(res, clients)
             )
             .catch(error =>
                 base.returnBadRequest(res, "Ha ocurrido un error", error)
@@ -15,12 +21,17 @@ module.exports = {
     },
     findById (req, res) {
         let id = req.body.id
-        return ClientType.findByPk(id)
-            .then(clientType => {
-                if (clientType != null) {
-                    base.dataStatusOk(res, clientType)
+        return Client.findByPk(id, {
+            include: {
+                model: ClientType,
+                attributes: ['name', 'description', 'discount_percentage']
+            }
+        })
+            .then(client => {
+                if (client != null) {
+                    base.dataStatusOk(res, client)
                 } else {
-                    base.falseStatusOk(res, "El tipo de cliente solicitado no ha sido encontrado.")
+                    base.falseStatusOk(res, "El cliente solicitado no ha sido encontrado.")
                 }
             })
             .catch(error =>
@@ -35,16 +46,17 @@ module.exports = {
             data_status = requestData.status
         }
 
-        const new_client_type = {
-            name: requestData.name,
-            description: requestData.description,
-            discount_percentage: requestData.discount_percentage,
+        const new_client = {
+            business_name: requestData.business_name,
+            tax_identification: requestData.tax_identification,
+            address: requestData.address,
+            id_client_type: requestData.id_client_type,
             status: data_status
         }
 
-        ClientType.create(new_client_type)
-            .then(clientType => {
-                base.messageStatusOk(res, clientType, "Creación de tipo de cliente realizada con éxito.")
+        Client.create(new_client)
+            .then(client => {
+                base.messageStatusOk(res, client, "Creación del cliente realizada con éxito.")
             })
             .catch(error => {
                 base.returnBadRequest(res, "Ha ocurrido un error.", error)
@@ -52,7 +64,7 @@ module.exports = {
     },
     update (req, res) {
         let requestData = req.body
-        ClientType.update(
+        Client.update(
             requestData,
             {
                 where: {
@@ -61,7 +73,7 @@ module.exports = {
             }
         )
             .then(_ => {
-                base.statusOk(res, "Tipo de cliente actualizado exitosamente.")
+                base.statusOk(res, "Cliente actualizado exitosamente.")
             })
             .catch(error => {
                 base.returnBadRequest(
@@ -74,16 +86,16 @@ module.exports = {
     async delete (req, res) {
         let id = req.params.id
         try {
-            const client_type = await ClientType.findByPk(id)
-            if (!client_type) {
-                return base.returnNotFound(res, "El tipo de cliente que se desea eliminar no ha sido encontrado.")
+            const client = await Client.findByPk(id)
+            if (!client) {
+                return base.returnNotFound(res, "El cliente que se desea eliminar no ha sido encontrado.")
             }
-            await client_type.destroy()
-            return base.statusOk(res, "Tipo de cliente eliminado exitosamente.")
+            await client.destroy()
+            return base.statusOk(res, "Cliente eliminado exitosamente.")
         } catch (error) {
             return base.returnInternalServerError(
                 res,
-                "Ha ocurrido un error al intentar eliminar el tipo de cliente.",
+                "Ha ocurrido un error al intentar eliminar el Cliente.",
                 error
             )
         }
