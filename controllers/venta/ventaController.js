@@ -11,4 +11,20 @@ const Cliente = db.cliente;
 const tipocliente = require('../../models/Proyecto/tipocliente/tipocliente');
 const Tipocliente = db.tipocliente;
 
-//pausa
+module.exports = {
+    //buscar todos los registros
+    find (req, res) {
+        return Venta.findAll()
+        .then(venta => res.status(200).send(venta))
+        .catch(error => res.status(400).send(error))
+    },
+
+    findById (req, res) {
+        let id = req.body.id
+        return Venta.findByPk(id)
+        .then(venta => res.status(200).send(venta))
+        .catch(error => res.status(400).send(error))
+    }, //Consulta por medio de una llave primaria
+
+    //create de una venta
+};
