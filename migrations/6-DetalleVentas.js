@@ -11,6 +11,7 @@ module.exports = {
       id_cliente: {
         allowNull: false,
         type: Sequelize.INTEGER,
+        onDelete: 'cascade',
         references: {
         model: 'Clientes',
         key: 'id'
@@ -19,6 +20,7 @@ module.exports = {
       id_venta: {
         allowNull: false,
         type: Sequelize.INTEGER,
+        onDelete: 'cascade',
         references: {
         model: 'Ventas',
         key: 'id'
