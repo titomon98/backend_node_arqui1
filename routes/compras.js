@@ -4,8 +4,8 @@ const comprasController = require('../controllers/comprasController');
 
 router.post("/", comprasController.generarCompra);
 router.get("/", comprasController.find);
+router.delete("/:id", comprasController.delete);
 // router.get("/:id", clienteController.findById);
 // router.put("/", clienteController.update);
-// router.delete("/:id", clienteController.delete);
 
 module.exports = router;

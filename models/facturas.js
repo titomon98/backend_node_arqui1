@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
       });
       facturas.hasMany(models.detalle_facturas, {
         foreignKey: "idFactura",
-        onDelete: 'CASCADE',
+        onDelete: 'cascade',
       });
     }
   }

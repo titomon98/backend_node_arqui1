@@ -6,20 +6,20 @@ module.exports = {
         allowNull: false,
         primaryKey: true,
         type: Sequelize.INTEGER,
+        onDelete: 'cascade',
         references: {
           model: "productos",
           key: "id",
-          onDelete: 'CASCADE',
         },
       },
       idCompra: {
         allowNull: false,
         primaryKey: true,
         type: Sequelize.INTEGER,
+        onDelete: 'cascade',
         references: {
           model: "compras",
           key: "id",
-          onDelete: 'CASCADE',
         },
       },
       cantidad: {

@@ -105,15 +105,38 @@ module.exports = {
   async delete(req, res) {
     const id = req.params.id;
 
-    const producto = await Productos.findByPk(id);
-    if (!producto) {
+    const factura = await Facturas.findByPk(id);
+    if (!factura) {
       return res.status(404).send({
-        message: "Producto no encontrado",
+        message: "Factura no encontrada",
       });
     }
 
-    await producto.destroy();
-    res.status(200).send({ message: "Producto eliminado" });
+    const detalleFacturas = await DetalleFacturas.findAll({
+      where: { idFactura: factura.id },
+    });
+
+    for (const detalleFactura of detalleFacturas) {
+      const producto = await Productos.findByPk(detalleFactura.idProducto);
+      if (!producto) {
+        return res.status(404).send({
+          message: "Producto no encontrado",
+        });
+      }
+      await Productos.update(
+        {
+          cantidad: producto.cantidad + detalleFactura.cantidad,
+        },
+        {
+          where: {
+            id: detalleFactura.idProducto,
+          },
+        }
+      );
+    }
+
+    await factura.destroy();
+    res.status(200).send({ message: "Venta eliminada" });
   },
 
   async generarFactura(req, res) {

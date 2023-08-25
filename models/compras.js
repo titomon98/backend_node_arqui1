@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       compras.hasMany(models.detalle_compras, {
         foreignKey: "idCompra",
-        onDelete: 'CASCADE',
+        onDelete: 'cascade',
       });
     }
   }

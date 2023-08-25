@@ -42,10 +42,10 @@ module.exports = {
       idTipoCliente: {
         allowNull: false,
         type: Sequelize.INTEGER,
+        onDelete: 'cascade',
         references: {
           model: "tipos_clientes",
           key: "id",
-          onDelete: 'CASCADE',
         },
       },
     });

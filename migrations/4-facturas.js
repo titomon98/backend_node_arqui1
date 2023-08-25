@@ -31,10 +31,10 @@ module.exports = {
       nitCliente: {
         allowNull: false,
         type: Sequelize.STRING,
+        onDelete: 'cascade',
         references: {
           model: "clientes",
           key: "nit",
-          onDelete: 'CASCADE',
         },
       },
     });
