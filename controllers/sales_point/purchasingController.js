@@ -3,7 +3,6 @@ const db = require('../../models')
 const base = require("../serverResponses");
 const PurchaseHeader = db.purchaseHeaders
 const PurchaseDetail = db.purchaseDetails
-const Supplier = db.suppliers
 const Product = db.products
 
 module.exports = {
@@ -32,8 +31,18 @@ module.exports = {
     async addProduct (req, res) {
         let requestData = req.body
         try {
-            const purchaseHeader = await PurchaseHeader.findByPk(requestData.id_purchase_header)
-            const product = await Product.findByPk(requestData.id_product)
+            const purchaseHeader = await PurchaseHeader.findByPk(
+                requestData.id_purchase_header,
+                {
+                    attributes: ['id']
+                }
+            )
+            const product = await Product.findByPk(
+                requestData.id_product,
+                {
+                    attributes: ['id', 'amount', 'purchase_price']
+                }
+            )
 
             if (!product) {
                 base.falseStatusOk(res, "Producto no encontrado.")
@@ -69,9 +78,9 @@ module.exports = {
                 }
             )
                 .then(_ => {
-                    base.statusOk(res, "Producto agregado exitosamente a la compra.")
+                    base.messageStatusOk(res, purchaseDetail, "Producto agregado exitosamente a la compra.")
                 })
-                .catch(error => {
+                .catch(_ => {
                     base.falseStatusOk(res, "Ha ocurrido un error al intentar actualizar el producto de la compra.")
                 });
         } catch (error) {
