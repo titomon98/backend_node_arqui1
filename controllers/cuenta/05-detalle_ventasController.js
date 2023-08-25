@@ -13,7 +13,7 @@ const { Op } = require("sequelize");
 module.exports = {
     find(req, res) {
         return Detalle_ventas.findAll({
-            attributes: ['cantidad', 'precio', 'subtotal'],
+            attributes: ['id', 'cantidad', 'precio', 'subtotal'],
             include: [{
                 model: Ventas,
                 attributes: ['fecha_venta', 'total'],

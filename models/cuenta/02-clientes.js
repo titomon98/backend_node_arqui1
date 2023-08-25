@@ -9,7 +9,8 @@ module.exports = (sequelize, DataTypes) => {
                 foreignKey: 'id_tipo_clientes'
             }),
             clientes.hasMany(models.ventas, {
-                foreignKey: 'id_clientes'
+                foreignKey: 'id_clientes',
+                onDelete: 'cascade'
             })
         }
     };

@@ -35,7 +35,10 @@ module.exports = (app) => {
     router.post('/ventas/createVenta', ventasController.createVenta);
     //Productos
     router.get('/productos/find', productosController.find);
+    router.get('/productos/findID/:id',productosController.findID);
     router.post('/productos/create', productosController.create);
+    router.put('/productos/update',productosController.update);
+    router.delete('/productos/delete/:id',productosController.delete);
     //detalle de ventas
     router.post('/detalle_ventas/create', detalle_ventasController.create);
     router.get('/detalle_ventas/find', detalle_ventasController.find);

@@ -40,6 +40,7 @@ module.exports = {
             id_ventas: {
                 allowNull: false,
                 type: Sequelize.INTEGER,
+                onDelete: 'cascade',
                 references: {
                     model: 'ventas',
                     key: 'id'
@@ -48,6 +49,7 @@ module.exports = {
             id_productos: {
                 allowNull: false,
                 type: Sequelize.INTEGER,
+                onDelete: 'cascade',
                 references: {
                     model: 'productos',
                     key: 'id'

@@ -27,6 +27,7 @@ module.exports = {
             id_proveedores: {
                 allowNull: false,
                 type: Sequelize.INTEGER,
+                onDelete: 'cascade',
                 references: {
                     model: 'proveedores',
                     key: 'id'

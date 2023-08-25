@@ -31,6 +31,7 @@ module.exports = {
             id_compras: {
                 allowNull: false,
                 type: Sequelize.INTEGER,
+                onDelete: 'cascade',
                 references: {
                     model: 'compras',
                     key: 'id'
