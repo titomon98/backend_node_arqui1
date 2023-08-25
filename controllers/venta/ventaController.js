@@ -13,6 +13,20 @@ const TipoCliente = db.tipoClientes;
 
 module.exports = {
 
+    find (req, res){
+        return Venta.findAll()
+        .then (venta => res.status(200).send(venta))
+        .catch (error => res.status(400).send(error))
+    },
+
+    findByPk(req, res ){
+        return Venta.findByPk(req.body.id_venta)
+        .then(venta => {
+
+        })//res.status(200).send(venta))
+        //.catch(error => res.status(400).send(error))
+    },
+
     async realizarVenta(req, res) {
         const id_cliente = req.body.id_cliente;
         const productos = req.body.productos;
@@ -34,7 +48,7 @@ module.exports = {
                     message: "Producto no encontrado"
                 });
             }
-            if (Producto.cantidad <= 0) {
+            if (productoVenta.cantidad > producto.cantidad) {
                 return res.status(404).send({
                     message: "Producto no disponible",
                 });
@@ -42,9 +56,7 @@ module.exports = {
 
             productoVenta.precio = producto.precio;
             productoVenta.precioTotal = Number(producto.precio) * Number(productoVenta.cantidad);
-            console.log(productoVenta)
             totalV += productoVenta.precioTotal;
-            console.log(totalV)
             await Producto.update(
                 {
                     cantidad: producto.cantidad - productoVenta.cantidad,
@@ -56,14 +68,12 @@ module.exports = {
                 }
             );
         }
-
         const tipoCliente = await TipoCliente.findByPk(cliente.id_tipoCliente);
         if (tipoCliente.descuento > 0) {
             descuentoCliente = tipoCliente.descuento;
-            descuentoAplicado = totalV * descuentoCliente;
+            descuentoAplicado = totalV * descuentoCliente / 100;
         }
         totalV -= descuentoAplicado;
-        console.log(totalV);
         const venta = await Venta.create({
             fecha: new Date(),
             total: totalV,
