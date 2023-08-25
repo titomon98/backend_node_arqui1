@@ -18,6 +18,8 @@ const tipoclienteController = require('../controllers/tipocliente/tipoclienteCon
 const proveedorController = require('../controllers/proveedor/proveedorController');
 //cliente
 const clienteController = require('../controllers/cliente/clienteController');
+//venta
+const ventaController = require('../controllers/venta/ventaController');
 //RUTAS
 module.exports = (app) => {
     //facturas
@@ -46,6 +48,9 @@ module.exports = (app) => {
 
     //cliente
     router.get('/cliente/find', clienteController.find);
+
+    //venta
+    router.get('/venta/find', ventaController.find);
     
     app.use('/', router);
 
@@ -83,5 +88,10 @@ module.exports = (app) => {
     router.put('/cliente/update', clienteController.update);
     //delete cliente
     router.delete('/cliente/delete/:id', clienteController.delete);
+
+    //create venta
+    router.post('/venta/create', ventaController.create);
+    //update venta
+    router.put('/venta/update', ventaController.update);
 
 };
