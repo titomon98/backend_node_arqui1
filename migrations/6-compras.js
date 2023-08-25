@@ -21,8 +21,8 @@ module.exports = {
             type: Sequelize.INTEGER,
             allowNull: false,
         },
-        monto_IVA: {
-            type: Sequelize.DECIMAL(10,2),
+        cantidad: {
+            type: Sequelize.INTEGER,
             allowNull: false,
         },
         proveedor_id: {

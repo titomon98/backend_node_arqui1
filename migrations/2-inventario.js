@@ -25,10 +25,6 @@ module.exports = {
           type: Sequelize.STRING,
           allowNull: false
       },
-      fecha_vencimiento: {
-          type: Sequelize.DATE,
-          allowNull: false
-      },
 
       createdAt: {
         allowNull: false,

@@ -31,10 +31,6 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false
     },
-    fecha_vencimiento: {
-        type: DataTypes.DATE,
-        allowNull: false
-    },
   }, {
     sequelize,
     modelName: 'inventarios',

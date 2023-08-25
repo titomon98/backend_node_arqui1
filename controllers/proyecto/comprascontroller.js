@@ -3,6 +3,8 @@ const Sequelize     = require('sequelize');
 const db = require("../../models");
 const Compras = db.compras;
 const Proveedores = db.proveedores;
+const DetalleCompra = db.detallescompras;
+const Inventario = db.inventarios; 
 const moment = require('moment');
 const axios = require('axios')
 const { Op } = require("sequelize");
@@ -13,7 +15,7 @@ module.exports = {
           {
             include: {
               model: Proveedores,
-              attibutes: ['nombre', 'apellido', 'telefono', 'direccion', 'email']
+              attributes: ['nombre', 'apellido', 'telefono', 'direccion', 'email']
             }
           }
         )
@@ -21,32 +23,51 @@ module.exports = {
         .catch(error => res.status(400).send(error))
     },
 
-    create (req, res) {
-        //Crear
-        //extraer datos de req.body
-        let datos = req.body //Serializar los datos
-        let montoIVA = datos.total * 0.12;
-        const datos_ingreso = { //Objeto
+     create (req, res) {
+      try {
+          let datos = req.body; // Serializar los datos
+          let montoIVA = datos.total * 0.12;
 
-            //falta agregar la relacion entre tablas
-            proveedor_id: datos.proveedor_id,
-            nombre: datos.nombre,
-            fecha_compra: datos.fechacompra,
-            total: datos.total,
-            monto_IVA: montoIVA,
-        };
+          // Crear registro en tabla compras
+          Compras.create({
+              proveedor_id: datos.proveedor_id,
+              nombre: datos.nombre,
+              fecha_compra: datos.fechacompra,
+              total: datos.total,
+              cantidad: datos.cantidad,
+          }).then(compras => {
+              // Calcular el subtotal
+              const subtotal = datos.total * datos.cantidad;
 
-        Compras.create(datos_ingreso)
-        .then(compras => {
-            res.send(compras);
-        })
-        .catch(error => {
-            console.log(error)
-            return res.status(500).json({ error: 'Error al insertar' });
-        });
-    },
-
-
+              // Crear registro en tabla detallecompra
+            DetalleCompra.create({
+                  compra_id: compras.id,
+                  cantidad: datos.cantidad,
+                  subtotal: subtotal,
+              }).then(detalleCompra => {
+                  // Crear registro en tabla inventario
+            Inventario.create({
+                      descripcion: datos.descripcion,
+                      preciounitario: datos.preciounitario,
+                      nombre: datos.nombre,
+                      cantidad: datos.cantidad,
+                  }).then(inventario => {
+                      // Asignar el ID de inventario al detalle de compra
+                      detalleCompra.inventario_id = inventario.id;
+                      return detalleCompra.save();
+                  }).then(detalleCompra => {
+                      res.send(detalleCompra);
+                  });
+              });
+          }).catch(error => {
+              console.log(error);
+              return res.status(500).json({ error: 'Error al insertar' });
+          });
+      } catch (error) {
+          console.log(error);
+          return res.status(500).json({ error: 'Error al insertar' });
+      }
+  },
     update (req, res) {
         //Actualizar
         let datos = req.body

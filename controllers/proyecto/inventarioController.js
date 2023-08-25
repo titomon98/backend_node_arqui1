@@ -21,7 +21,6 @@ module.exports = {
         const datos_ingreso = { //Objeto
             nombre: datos.nombre,
             descripcion: datos.descripcion,
-            fecha_vencimiento: datos.fecha_vencimiento,
             cantidad: datos.cantidad,
             precio: cantidad * 15,
         };

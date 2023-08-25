@@ -29,8 +29,8 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         allowNull: false,
     },
-    monto_IVA: {
-        type: DataTypes.DECIMAL(10,2),
+    cantidad: {
+        type: DataTypes.INTEGER,
         allowNull: false,
     },
     proveedor_id: {

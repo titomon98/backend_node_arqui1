@@ -26,7 +26,6 @@ module.exports = (sequelize, DataTypes) => {
     }, 
     inventario_id: {
       type: DataTypes.INTEGER,
-      allowNull: false,
     },
     compra_id: {
       type: DataTypes.INTEGER,
