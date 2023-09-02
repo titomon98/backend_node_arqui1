@@ -14,7 +14,6 @@ const proveedoresController = require('../controllers/proveedor/proveedoresContr
 const inventariosController = require('../controllers/inventario/inventariosController');
 const ventasController = require('../controllers/ventas/ventasController');
 const comprasController = require('../controllers/compra/comprasController');
-const externoController = require('../controllers/externo/externoController');
 //'../controllers/comida/comidaController' - en este caso comida es el nombre de la carpeta de los controladores o el cotrolador a usar
 
 //RUTAS
@@ -24,7 +23,6 @@ module.exports = (app) => {
     router.get('/factura/find', facturasController.find);
     router.get('/factura/find/id', facturasController.findById);
     router.get('/factura/find/discount', facturasController.findByDiscount);
-    router.get('/factura/find/fecha', facturasController.find);
     
     //personas
     router.get('/persona/find', personasController.find);
