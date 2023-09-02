@@ -15,6 +15,14 @@ module.exports = {
             .catch(error => res.status(400).send(error)) //Enviamos un mensaje de error por si acaso
     },
 
+    findById (req, res) {
+      let id = req.body.id
+      return TIPOCLIENTE.findByPk(id)
+      .then(cuenta => res.status(200).send(cuenta))
+      .catch(error => res.status(400).send(error))
+  }, //Consulta por medio de una llave primaria
+
+
     //create
     create (req, res) {
         //Crear

@@ -45,6 +45,7 @@ module.exports = (app) => {
     router.post('/tipo_clientes/create', tipo_clientesController.create);
     router.put('/tipo_clientes/update', tipo_clientesController.update);
     router.delete('/tipo_clientes/delete/:id', tipo_clientesController.delete);
+    router.get('/tipo_clientes/find/id', tipo_clientesController.findById);
 
     //proveedores
     router.get('/proveedores/find', proveedoresController.find);
