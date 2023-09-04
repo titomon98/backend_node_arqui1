@@ -1,68 +1,81 @@
 'use strict'
-const Sequelize     = require('sequelize');
 const db = require("../../models");
 const Tipo_Clientes = db.tipo_clientes;
-const moment = require('moment');
-const axios = require('axios')
-const { Op } = require("sequelize");
 
 module.exports = {
-    find (req, res) {
+    find(req, res) {
         return Tipo_Clientes.findAll({
-            
+
         })
-        .then(cuenta => res.status(200).send(cuenta))
-        .catch(error => res.status(400).send(error))
+            .then(cuenta => res.status(200).send(cuenta))
+            .catch(error => res.status(400).send(error))
     },
     findId(req, res) {
         const ID = req.params.id; // Obtén el ID del registro a buscar
         Tipo_Clientes.findByPk(ID)
-            .then(registro => {
-                if (!registro) {
-                    return res.status(404).json({ error: 'Tipo de cliente no encontrado' });
+            .then(tipo_clientes => {
+                if (!tipo_clientes) {
+                    return res.status(200).send({ error: 'Tipo de cliente no encontrado' });
                 }
-                res.status(200).json({ registro });
+                else {
+                    return res.status(200).send(tipo_clientes);
+                }
+            })
+            .catch(error => res.status(400).send({ error: 'Error al realizar la consulta' }));
+    }
+    ,
+    findById(req, res) {
+        let id = req.params.id
+        return Tipo_Clientes.findByPk(id)
+            .then(tipo_clientes => res.status(200).send(tipo_clientes))
+            .catch(tipo_clientes => res.status(400).send(error))
+    },
+    create(req, res) {
+        let datos = req.body
+        const datos_ingreso = {
+            nombre: datos.nombre,
+            descuento: datos.descuento
+        };
+        Tipo_Clientes.create(datos_ingreso)
+            .then(tipo_clientes => {
+                res.send(tipo_clientes);
             })
             .catch(error => {
-                console.log(error);
-                return res.status(500).json({ error: 'Error al buscar el tipo de cliente' });
+                console.log(error)
+                return res.status(500).json({ error: 'Error al insertar' });
             });
-    },    
-    create (req, res) {
-      //Crear
-      //extraer datos de req.body
-      let datos = req.body //Serializar los datos
-      const datos_ingreso = { //Objeto
-          nombre: datos.nombre,
-          descuento: datos.descuento
-      };
-      Tipo_Clientes.create(datos_ingreso)
-      .then(tipo_clientes => {
-          res.send(tipo_clientes);
-      })
-      .catch(error => {
-          console.log(error)
-          return res.status(500).json({ error: 'Error al insertar' });
-      });
     },
     update(req, res) {
-        //Actualizar
         let datos = req.body
         Tipo_Clientes.update(
-            { //En crudo
+            {
                 nombre: datos.nombre,
                 descuento: datos.descuento
-            },
-            {
-                where: {
-                    id: datos.id
-                }
-            }
+            },{ where: { id: datos.id }}
         )
-            .then(tipo_clientes => res.status(200).send('El registro ha sido actualizado'))
+            .then(tipo_clientes => {
+                if (tipo_clientes[0] === 0) {
+                    return res.status(200).send({error: 'No se encontró ningún registro para actualizar'});
+                }
+                return res.status(200).send('El registro ha sido actualizado');
+            })
             .catch(error => {
                 console.log(error)
                 return res.status(500).json({ error: 'Error al actualizar' });
             });
-    },
+    },   
+    async delete(req, res) {
+        let id = req.params.id;
+        try {
+            const tipo_clientes = await Tipo_Clientes.findByPk(id);
+            if (!tipo_clientes) {
+                return res.status(200).send({ error: 'Tipo de cliente no encontrada' });
+            }
+            await tipo_clientes.destroy();
+            return res.status(200).send({ message: 'Tipo de clientes eliminada correctamente' });
+        } catch (error) {
+            console.error('Error al eliminar el tipo de cliente:', error);
+            return res.status(500).send({ error: 'Error al eliminar el tipo de clientes' });
+        }
+    }
 };

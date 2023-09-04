@@ -16,19 +16,23 @@ const proveedoresController = require('../controllers/cuenta/06-proveedoresContr
 const comprasController = require('../controllers/cuenta/07-comprasController');
 //detalle de compras
 const detalle_comprasController = require('../controllers/cuenta/08-detalles_comprasController');
+//apis
+const apiController = require('../controllers/cuenta/00-apiController');
 //RUTAS
 module.exports = (app) => {
     //tipo de clientes
     router.get('/tipo_clientes/find', tipo_clientesController.find);
     router.get('/tipo_clientes/findId/:id',tipo_clientesController.findId)
+    router.get('/tipo_clientes/findById/:id',tipo_clientesController.findById)
     router.post('/tipo_clientes/create', tipo_clientesController.create);
     router.put('/tipo_clientes/update', tipo_clientesController.update);
+    router.delete('/tipo_clientes/delete/:id',tipo_clientesController.delete);
     //clientes
-    router.post('/clientes/create', clientesController.create);
     router.get('/clientes/find', clientesController.find);
     router.get('/clientes/findId/:id',clientesController.findId)
-    router.delete('/clientes/delete/:id', clientesController.delete);
+    router.post('/clientes/create', clientesController.create);
     router.put('/clientes/update',clientesController.update);
+    router.delete('/clientes/delete/:id', clientesController.delete);
     //ventas
     router.get('/ventas/find', ventasController.find);
     router.get('/ventas/findId/:id',ventasController.findId);
@@ -53,5 +57,7 @@ module.exports = (app) => {
     //detalle compras
     router.get('/detalle_compras/find',detalle_comprasController.find);
     router.post('/detalle_compras/create',detalle_comprasController.create);
+    //API
+    router.get('/api/find',apiController.find);
     app.use('/', router);
 };
