@@ -26,7 +26,7 @@ module.exports = {
             nombre: datos.nombre,
             existencia: 0,
             costo: datos.costo,
-            precio_venta: datos.venta,
+            precio_venta: datos.precio_venta,
             estado: 1,
         };
 
