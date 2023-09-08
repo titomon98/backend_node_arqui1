@@ -57,12 +57,12 @@ module.exports = {
         //extraer datos de req.body
         let datos = req.body //Serializar los datos
         const datos_ingreso = { //Objeto
-            nombres: datos.nombre,
+            nombres: datos.nombres,
             apellidos: datos.apellidos,
             nit: datos.nit,
-            num_celular: datos.celular,
+            num_celular: datos.num_celular,
             correo: datos.correo,
-            id_tipo_cliente: datos.tipo_cliente,
+            id_tipo_cliente: datos.id_tipo_cliente,
             estado: 1,
         };
 
@@ -107,7 +107,7 @@ module.exports = {
         let datos = req.body
         TipoClientes.update(
             { //En crudo
-                nombre: datos.nombres,
+                nombre: datos.nombre,
                 descuento: datos.descuento,
                 estado: datos.estado,
             },
