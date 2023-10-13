@@ -54,7 +54,7 @@ module.exports = {
               }
             }
           )
-          .then(tipocliente => res.status(200).send('El registro ha sido actualizado'))
+          .then(tipocliente => res.status(200).send('El registro' + tipocliente.id + ' ha sido actualizado'))
           .catch(error => {
               console.log(error)
               return res.status(500).json({ error: 'Error al actualizar' });

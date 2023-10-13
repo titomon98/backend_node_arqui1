@@ -20,78 +20,91 @@ const proveedorController = require('../controllers/proveedor/proveedorControlle
 const clienteController = require('../controllers/cliente/clienteController');
 //venta
 const ventaController = require('../controllers/venta/ventaController');
+
+//aeropuerto
+const aeropuertoController = require('../controllers/aeropuerto/aeropuertoController');
+
 //RUTAS
 module.exports = (app) => {
-    //facturas
-    router.get('/factura/find', facturasController.find);
-    router.get('/factura/find/id', facturasController.findById);
-    router.get('/factura/find/discount', facturasController.findByDiscount);
+    // //facturas
+    // router.get('/factura/find', facturasController.find);
+    // router.get('/factura/find/id', facturasController.findById);
+    // router.get('/factura/find/discount', facturasController.findByDiscount);
     
-    //personas
-    router.get('/persona/find', personasController.find);
+    // //personas
+    // router.get('/persona/find', personasController.find);
 
-    //productos
-    router.get('/productos/find', controladorproductos.find);
-    router.get('/productos/find/id', controladorproductos.findById);
+    // //productos
+    // router.get('/productos/find', controladorproductos.find);
+    // router.get('/productos/find/id', controladorproductos.findById);
 
-    //tienda
-    router.get('/tienda/find', tiendacontroller.findTienda);
+    // //tienda
+    // router.get('/tienda/find', tiendacontroller.findTienda);
 
-    //inventario
-    router.get('/inventario/find', inventarioController.find);
+    // //inventario
+    // router.get('/inventario/find', inventarioController.find);
 
-    //tipo cliente
-    router.get('/tipocliente/find', tipoclienteController.find);
+    // //tipo cliente
+    // router.get('/tipocliente/find', tipoclienteController.find);
+    // router.put('/tipocliente/update', tipoclienteController.update);
+    // router.delete('/tipocliente/delete/:id', tipoclienteController.delete);
+    // router.post('/tipocliente/create', tipoclienteController.create);
 
-    //proveedor
-    router.get('/proveedor/find', proveedorController.find);
+    // //proveedor
+    // router.get('/proveedor/find', proveedorController.find);
 
-    //cliente
-    router.get('/cliente/find', clienteController.find);
+    // //cliente
+    // router.get('/cliente/find', clienteController.find);
 
-    //venta
-    router.get('/venta/find', ventaController.find);
+    // //venta
+    // router.get('/venta/find', ventaController.find);
     
     app.use('/', router);
 
-    //create productos
-    router.post('/productos/create', controladorproductos.create);
-    //update productos
-    router.put('/productos/update', controladorproductos.update);
-    //delete productos
-    router.delete('/productos/delete/:id', controladorproductos.delete);
+    // //create productos
+    // router.post('/productos/create', controladorproductos.create);
+    // //update productos
+    // router.put('/productos/update', controladorproductos.update);
+    // //delete productos
+    // router.delete('/productos/delete/:id', controladorproductos.delete);
 
-    //create inventario
-    router.post('/inventario/create', inventarioController.create);
-    //update inventario
-    router.put('/inventario/update', inventarioController.update);
-    //delete inventario
-    router.delete('/inventario/delete/:id', inventarioController.delete);
+    // //create inventario
+    // router.post('/inventario/create', inventarioController.create);
+    // //update inventario
+    // router.put('/inventario/update', inventarioController.update);
+    // //delete inventario
+    // router.delete('/inventario/delete/:id', inventarioController.delete);
 
-    //create tipo cliente
-    router.post('/tipocliente/create', tipoclienteController.create);
-    //update tipo cliente
-    router.put('/tipocliente/update', tipoclienteController.update);
-    //delete tipo cliente
-    router.delete('/tipocliente/delete/:id', tipoclienteController.delete);
+    // //create tipo cliente
+    // router.post('/tipocliente/create', tipoclienteController.create);
+    // //update tipo cliente
+    // router.put('/tipocliente/update', tipoclienteController.update);
+    // //delete tipo cliente
+    // router.delete('/tipocliente/delete/:id', tipoclienteController.delete);
 
-    //create proveedor
-    router.post('/proveedor/create', proveedorController.create);
-    //update proveedor
-    router.put('/proveedor/update', proveedorController.update);
-    //delete proveedor
-    router.delete('/proveedor/delete/:id', proveedorController.delete);
+    // //create proveedor
+    // router.post('/proveedor/create', proveedorController.create);
+    // //update proveedor
+    // router.put('/proveedor/update', proveedorController.update);
+    // //delete proveedor
+    // router.delete('/proveedor/delete/:id', proveedorController.delete);
 
-    //create cliente
-    router.post('/cliente/create', clienteController.create);
-    //update cliente
-    router.put('/cliente/update', clienteController.update);
-    //delete cliente
-    router.delete('/cliente/delete/:id', clienteController.delete);
+    // //create cliente
+    // router.post('/cliente/create', clienteController.create);
+    // //update cliente
+    // router.put('/cliente/update', clienteController.update);
+    // //delete cliente
+    // router.delete('/cliente/delete/:id', clienteController.delete);
 
-    //create venta
-    router.post('/venta/create', ventaController.create);
-    //update venta
-    router.put('/venta/update', ventaController.update);
+    // //create venta
+    // router.post('/venta/create', ventaController.create);
+    // //update venta
+    // router.put('/venta/update', ventaController.update);
 
+
+    //AEROPUERTO
+    //find
+    router.get('/aeropuerto/find', aeropuertoController.find);
+    //findById
+    router.get('/aeropuerto/find/id', aeropuertoController.findById);
 };
